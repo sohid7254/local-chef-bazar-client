@@ -5,7 +5,7 @@ import logo from "../../assets/logo3.png";
 
 const Footer = () => {
     return (
-        <footer className="w-full py-12 mt-16 bg-secondary">
+        <footer className="w-full py-12 mt-16 bg-secondary shadow-md">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
                 {/* ✅ 1. Logo + Description */}
                 <div className="flex flex-col items-start">

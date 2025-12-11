@@ -52,11 +52,7 @@ const NavBar = () => {
                     About Us
                 </NavLink>
             </li>
-            <li>
-                <NavLink to="/service" className={({ isActive }) => (isActive ? "underline px-2 py-1 text-primary font-semibold" : " px-2 py-1 font-semibold")}>
-                    Our Service
-                </NavLink>
-            </li>
+            
 
             {user && (
                 <li>
@@ -69,7 +65,7 @@ const NavBar = () => {
     );
 
     return (
-        <div className="bg-secondary shadow-sm">
+        <div className="bg-secondary shadow-sm sticky top-0 z-50">
             <div className="navbar max-w-7xl mx-auto px-4">
                 {/* ✅ LEFT */}
                 <div className="navbar-start flex items-center gap-2">
@@ -108,7 +104,7 @@ const NavBar = () => {
                                 Sign In
                             </Link>
 
-                            <Link to="/register" className="btn btn-primary rounded-xl text-white">
+                            <Link to="/register" className="btn btn-primary rounded-xl ">
                                 Sign Up
                             </Link>
                         </>
