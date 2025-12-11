@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+/* 🌞 Light Theme (default) */
+:root {
+  --color-primary: #00473d;     /* Deep Forest */
+  --color-secondary: #f5f4e9;   /* Cream */
+  --color-third: #D4EB80;       /* Lime Accent */
+
+  --text-color: #00473d;        
+}
+
+/* 🌙 Dark Theme */
+[data-theme="dark"] {
+  --color-primary: #D4EB80;     /* Lime */
+  --color-secondary: #002923;   /* Midnight Green */
+  --color-third: #8fcf4f;       /* Soft Lime */
+
+  --text-color: #f5f4e9;        
+  
+}
+
+/* ✅ Global Styles */
+body {
+  background-color: var(--color-secondary);
+  color: var(--text-color) !important;
+  font-family: Arial, sans-serif;
+}
