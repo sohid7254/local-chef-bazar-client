@@ -1,9 +1,14 @@
 import React from 'react';
+import HeroBanner from '../../Components/Home/HeroBanner';
+import HeroOverlay from '../../Components/Home/HeroOverlay';
+import KitchenView from '../../Components/Home/KitchenView';
 
 const Home = () => {
     return (
         <div>
-            <h2>hello</h2>
+            <HeroBanner/>
+            <HeroOverlay/>
+            <KitchenView/>
         </div>
     );
 };
