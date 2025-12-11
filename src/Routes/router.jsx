@@ -3,6 +3,9 @@ import Home from "../Pages/Home/Home";
 import RootLayout from "../Layouts/RootLayout.jsx/RootLayout";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import LoginPage from "../Pages/Auth/Login";
+import Registeration from "../Pages/Auth/Registeration";
+
 
 
 export const router = createBrowserRouter([
@@ -21,6 +24,14 @@ export const router = createBrowserRouter([
             {
                 path: "/contactUs",
                 element: <ContactUs/>
+            },
+            {
+                path: "/login",
+                element: <LoginPage/>
+            },
+            {
+                path: "/register",
+                element: <Registeration/>
             }
         ]
 
