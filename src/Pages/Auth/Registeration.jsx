@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import login from "../../assets/About/Service5.jpg";
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
@@ -7,11 +7,25 @@ const Registeration = () => {
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm();
 
+    const [preview, setPreview] = useState(null);
+
     const handleSignUp = (data) => {
         console.log(data);
+    };
+
+    // watch password field
+    const password = watch("password");
+
+    // handle image preview
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPreview(URL.createObjectURL(file));
+        }
     };
 
     return (
@@ -35,10 +49,10 @@ const Registeration = () => {
                                 {...register("name", { required: true, minLength: 3 })}
                                 placeholder="Enter your name"
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100 
-                                placeholder-gray-400 dark:placeholder-gray-500
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100 
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             {errors.name && <p className="text-red-400">Name is required</p>}
                         </div>
@@ -51,10 +65,10 @@ const Registeration = () => {
                                 {...register("address", { required: true })}
                                 placeholder="Enter your address"
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100 
-                                placeholder-gray-400 dark:placeholder-gray-500
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100 
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             {errors.address && <p className="text-red-400">Address is required</p>}
                         </div>
@@ -64,13 +78,18 @@ const Registeration = () => {
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Upload Your Image</label>
                             <input
                                 type="file"
+                                accept="image/*"
                                 {...register("image", { required: true })}
+                                onChange={handleImageChange}
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             {errors.image && <p className="text-red-400">Image is required</p>}
+
+                            {/* Preview */}
+                            {preview && <img src={preview} alt="preview" className="w-24 h-24 rounded-full mt-3 object-cover border" />}
                         </div>
 
                         {/* Email */}
@@ -81,10 +100,10 @@ const Registeration = () => {
                                 {...register("email", { required: true })}
                                 placeholder="Enter your email"
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100 
-                                placeholder-gray-400 dark:placeholder-gray-500
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100 
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             {errors.email && <p className="text-red-400">Email is required</p>}
                         </div>
@@ -104,10 +123,10 @@ const Registeration = () => {
                                 })}
                                 placeholder="Enter your password"
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100 
-                                placeholder-gray-400 dark:placeholder-gray-500
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100 
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             {errors.password && <p className="text-red-400">{errors.password.message}</p>}
                         </div>
@@ -117,22 +136,25 @@ const Registeration = () => {
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Confirm Password</label>
                             <input
                                 type="password"
-                                {...register("confirmPassword", { required: true })}
+                                {...register("confirmPassword", {
+                                    required: "Confirm password is required",
+                                    validate: (value) => value === password || "Passwords do not match",
+                                })}
                                 placeholder="Confirm your password"
                                 className="w-full px-4 py-2 border rounded-md 
-                                bg-white dark:bg-gray-700 
-                                text-gray-800 dark:text-gray-100 
-                                placeholder-gray-400 dark:placeholder-gray-500
-                                focus:outline-none focus:ring-2 focus:ring-primary"
+                bg-white dark:bg-gray-700 
+                text-gray-800 dark:text-gray-100 
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-primary"
                             />
-                            {errors.confirmPassword && <p className="text-red-400">Confirm password is required</p>}
+                            {errors.confirmPassword && <p className="text-red-400">{errors.confirmPassword.message}</p>}
                         </div>
 
                         {/* Register Button */}
                         <button
                             type="submit"
                             className="w-full bg-primary py-2 rounded-md font-semibold 
-                            text-white hover:bg-primary-hover transition"
+              text-white hover:bg-primary-hover transition"
                         >
                             Register
                         </button>
@@ -149,9 +171,9 @@ const Registeration = () => {
                     <Link
                         to="/login"
                         className="w-full block py-3 text-center border border-primary 
-                        text-primary dark:text-white dark:bg-primary 
-                        rounded-lg font-semibold hover:bg-primary hover:text-white 
-                        transition"
+            text-primary dark:text-white dark:bg-primary 
+            rounded-lg font-semibold hover:bg-primary hover:text-white 
+            transition"
                     >
                         Login Instead
                     </Link>
