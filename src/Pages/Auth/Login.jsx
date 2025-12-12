@@ -15,6 +15,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleLogin = (data) => {
+        console.log(handleLogin, "clicked")
         signInUser(data.email, data.password)
             .then((res) => {
                 console.log(res.user);
@@ -79,13 +80,13 @@ const LoginPage = () => {
                         </div>
 
                         {/* Login Button */}
-                        <Link
+                        <button
                             type="submit"
                             className="btn w-full py-3 bg-primary text-white font-bold cursor-pointer rounded-lg 
                hover:bg-thi transition"
                         >
                             Login
-                        </Link>
+                        </button>
                     </form>
                     {/* Register Button */}
                     <div className="flex items-center my-6">
