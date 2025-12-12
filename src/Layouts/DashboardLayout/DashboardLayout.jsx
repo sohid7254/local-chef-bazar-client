@@ -64,7 +64,7 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={"/"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Homepage">
+                            <Link to={"/dashboard/myProfile"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My-Profile">
                                 <FaUser className="text-xl" />
                                 <span className="is-drawer-close:hidden">My Profile</span>
                             </Link>

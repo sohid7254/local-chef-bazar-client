@@ -6,8 +6,9 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import LoginPage from "../Pages/Auth/Login";
 import Registeration from "../Pages/Auth/Registeration";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
-import MyProfile from "../Pages/DashBoard/MyProfile";
+
 import RootLayout from "../Layouts/RootLayout/RootLayout";
+import MyProfile from "../Pages/DashBoard/MyProfile";
 
 
 
@@ -21,22 +22,22 @@ export const router = createBrowserRouter([
                 element: <Home/>,
             },
             {
-                path: "/aboutUs",
+                path: "aboutUs",
                 element: <AboutUs/>
             },
             {
-                path: "/contactUs",
+                path: "contactUs",
                 element: <ContactUs/>
             },
             {
-                path: "/login",
+                path: "login",
                 element: <LoginPage/>
             },
             {
-                path: "/register",
+                path: "register",
                 element: <Registeration/>
             }
-        ]
+        ],
 
     },
     {
@@ -50,4 +51,4 @@ export const router = createBrowserRouter([
         ]
     }
    
-])
+]);
