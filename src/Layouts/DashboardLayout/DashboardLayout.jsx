@@ -1,12 +1,18 @@
 import React from "react";
-import { GoSidebarCollapse } from "react-icons/go";
+import { GoListOrdered, GoSidebarCollapse } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { Link, Outlet, useNavigate } from "react-router"; 
 import logo from "../../assets/logo1.png";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaUsersSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
+import { LuListEnd } from "react-icons/lu";
+import { MdNoMeals } from "react-icons/md";
+import { GiHotMeal, GiMeal } from "react-icons/gi";
+import { VscPreview } from "react-icons/vsc";
+import { CiSquareQuestion } from "react-icons/ci";
+import { FcStatistics } from "react-icons/fc";
 const DashboardLayout = () => {
     const {user, logOut } = useAuth()
     const {role} = useRole()
@@ -69,6 +75,72 @@ const DashboardLayout = () => {
                                 <span className="is-drawer-close:hidden">My Profile</span>
                             </Link>
                         </li>
+                        {role === "admin" && (
+                            <>
+                                <li>
+                                    <Link to={"/dashboard/manageUsers"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Manage Users">
+                                        <FaUsersSlash className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Manage Users</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/manageRequests"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Manage Requests">
+                                        <CiSquareQuestion className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Manage Requests</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/plateformStatistics"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Plateform Statistics">
+                                        <FcStatistics className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Plateform Statistics</span>
+                                    </Link>
+                                </li>
+                            </>
+                        )}
+                        {role === "user" && (
+                            <>
+                                <li>
+                                    <Link to={"/dashboard/myOrders"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Orders">
+                                        <GoListOrdered className="text-xl" />
+                                        <span className="is-drawer-close:hidden">My Orders</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/review"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Review">
+                                        <VscPreview className="text-xl" />
+                                        <span className="is-drawer-close:hidden">My Review</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/favouriteMeal"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Favourite Meal">
+                                        <GiMeal className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Favourite Meal</span>
+                                    </Link>
+                                </li>
+                            </>
+                        )}
+                        {role === "chef" && (
+                            <>
+                                <li>
+                                    <Link to={"/dashboard/createMeal"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Create Meal">
+                                        <GiHotMeal className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Create Meal</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/myMeals"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Meal">
+                                        <MdNoMeals className="text-xl" />
+                                        <span className="is-drawer-close:hidden">My Meal</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/dashboard/orderRequests"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Order Requests">
+                                        <LuListEnd className="text-xl" />
+                                        <span className="is-drawer-close:hidden">Order Requests</span>
+                                    </Link>
+                                </li>
+                            </>
+                        )}
 
                         <li>
                             <Link onClick={handleLogout} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-10" data-tip="LogOut">
