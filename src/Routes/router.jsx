@@ -9,49 +9,49 @@ import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 
 import RootLayout from "../Layouts/RootLayout/RootLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile";
+import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
 
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <RootLayout/>,
+        element: <RootLayout />,
         children: [
             {
                 index: true,
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: "aboutUs",
-                element: <AboutUs/>
+                element: <AboutUs />,
             },
             {
                 path: "contactUs",
-                element: <ContactUs/>
+                element: <ContactUs />,
             },
             {
                 path: "login",
-                element: <LoginPage/>
+                element: <LoginPage />,
             },
             {
                 path: "register",
-                element: <Registeration/>
-            }
+                element: <Registeration />,
+            },
         ],
-
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout/>,
+        element: <DashboardLayout />,
         children: [
             {
                 path: "myProfile",
-                element: <MyProfile/>
+                element: <MyProfile />,
             },
             {
-                path: 
-            }
-        ]
-    }
-   
+                path: "manageRequests",
+                element: <ManageRequests/>
+            },
+        ],
+    },
 ]);
