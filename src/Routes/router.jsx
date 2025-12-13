@@ -10,6 +10,7 @@ import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import RootLayout from "../Layouts/RootLayout/RootLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile";
 import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
+import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 
 
 
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
                 path: "manageRequests",
                 element: <ManageRequests/>
             },
+            {
+                path: "manageUsers",
+                element: <ManageUsers/>
+            }
         ],
     },
 ]);
