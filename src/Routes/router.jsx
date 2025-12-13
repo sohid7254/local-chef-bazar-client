@@ -11,6 +11,7 @@ import RootLayout from "../Layouts/RootLayout/RootLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile";
 import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
 import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
+import CreateMeals from "../Pages/DashBoard/Chef/CreateMeals";
 
 
 
@@ -51,12 +52,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: "manageRequests",
-                element: <ManageRequests/>
+                element: <ManageRequests />,
             },
             {
                 path: "manageUsers",
-                element: <ManageUsers/>
-            }
+                element: <ManageUsers />,
+            },
+            {
+                path: "createMeal",
+                element: <CreateMeals />,
+            },
         ],
     },
 ]);

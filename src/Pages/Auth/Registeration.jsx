@@ -29,9 +29,7 @@ const Registeration = () => {
         }
     };
 
-    // -------------------------------
-    //      SIGN UP FUNCTION
-    // -------------------------------
+    
     const handleSignUp = async (data) => {
         try {
             const profileImage = data.image[0];
