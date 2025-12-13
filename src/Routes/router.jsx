@@ -12,6 +12,7 @@ import MyProfile from "../Pages/DashBoard/MyProfile";
 import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
 import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 import CreateMeals from "../Pages/DashBoard/Chef/CreateMeals";
+import MyMeals from "../Pages/DashBoard/Chef/MyMeals";
 
 
 
@@ -62,6 +63,11 @@ export const router = createBrowserRouter([
                 path: "createMeal",
                 element: <CreateMeals />,
             },
+            {
+                path: "myMeals",
+                element: <MyMeals/>
+            }
+            
         ],
     },
 ]);
