@@ -15,6 +15,8 @@ import CreateMeals from "../Pages/DashBoard/Chef/CreateMeals";
 import MyMeals from "../Pages/DashBoard/Chef/MyMeals";
 import Error404 from "../Components/Shared/Error404";
 import Error500 from "../Components/Shared/Error500";
+import PrivateRoute from "./PrivateRoute";
+import MealDetails from "../Pages/MealDetails/MealDetails";
 
 
 
@@ -48,6 +50,13 @@ export const router = createBrowserRouter([
                 path: "register",
                 element: <Registeration />,
                 errorElement: <Error500 />,
+            },
+            {
+                path: "/mealDetails/:id",
+                element: <PrivateRoute>
+                    <MealDetails/>
+                </PrivateRoute>,
+                errorElement: <Error500/>
             },
         ],
     },

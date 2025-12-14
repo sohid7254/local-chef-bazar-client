@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router';
 
 const LeatestMeal = () => {
     const axiosSecure = useAxiosSecure();
@@ -43,7 +44,9 @@ const LeatestMeal = () => {
                                 <span className="badge bg-orange-500"> {meal.rating}</span>
                             </div>
 
-                            <button className="btn btn-sm mt-4 ">See Details</button>
+                            <Link to={`/mealDetails/${meal._id}`} className="btn btn-sm mt-4 ">
+                                See Details
+                            </Link>
                         </div>
                     </div>
                 ))}
