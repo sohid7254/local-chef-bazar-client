@@ -13,6 +13,9 @@ import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
 import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 import CreateMeals from "../Pages/DashBoard/Chef/CreateMeals";
 import MyMeals from "../Pages/DashBoard/Chef/MyMeals";
+import Error404 from "../Components/Shared/Error404";
+import Error500 from "../Components/Shared/Error500";
+
 
 
 
@@ -24,22 +27,27 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+                errorElement: <Error500 />,
             },
             {
                 path: "aboutUs",
                 element: <AboutUs />,
+                errorElement: <Error500 />,
             },
             {
                 path: "contactUs",
                 element: <ContactUs />,
+                errorElement: <Error500 />,
             },
             {
                 path: "login",
                 element: <LoginPage />,
+                errorElement: <Error500 />,
             },
             {
                 path: "register",
                 element: <Registeration />,
+                errorElement: <Error500 />,
             },
         ],
     },
@@ -50,24 +58,32 @@ export const router = createBrowserRouter([
             {
                 path: "myProfile",
                 element: <MyProfile />,
+                errorElement: <Error500 />,
             },
             {
                 path: "manageRequests",
                 element: <ManageRequests />,
+                errorElement: <Error500 />,
             },
             {
                 path: "manageUsers",
                 element: <ManageUsers />,
+                errorElement: <Error500 />,
             },
             {
                 path: "createMeal",
                 element: <CreateMeals />,
+                errorElement: <Error500 />,
             },
             {
                 path: "myMeals",
-                element: <MyMeals/>
-            }
-            
+                element: <MyMeals />,
+                errorElement: <Error500 />,
+            },
         ],
+    },
+    {
+        path: "*",
+        Component: Error404,
     },
 ]);

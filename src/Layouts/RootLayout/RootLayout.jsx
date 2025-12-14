@@ -2,10 +2,16 @@ import React from "react";
 import { Outlet } from "react-router";
 import NavBar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer";
+import useAuth from "../../Hooks/useAuth";
+import AppLoading from "../../Components/Shared/AppLoading";
 
 
 
 const RootLayout = () => {
+    const {loading} = useAuth();
+    if(loading){
+        return <AppLoading/>
+    }
     return (
         <div className="flex flex-col min-h-screen text-base-content">
             {/* Navbar */}
