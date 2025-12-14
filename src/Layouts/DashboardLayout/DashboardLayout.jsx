@@ -2,7 +2,7 @@ import React from "react";
 import { GoListOrdered, GoSidebarCollapse } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
-import { Link, Outlet, useNavigate } from "react-router"; 
+import { Link, NavLink, Outlet, useNavigate } from "react-router"; 
 import logo from "../../assets/logo1.png";
 import { FaUser, FaUsersSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
@@ -70,74 +70,144 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={"/dashboard/myProfile"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My-Profile">
+                            <NavLink
+                                to="/dashboard/myProfile"
+                                data-tip="My-Profile"
+                                className={({ isActive }) =>
+                                    `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                }
+                            >
                                 <FaUser className="text-xl" />
                                 <span className="is-drawer-close:hidden">My Profile</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         {role === "admin" && (
                             <>
                                 <li>
-                                    <Link to={"/dashboard/manageUsers"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Manage Users">
+                                    <NavLink
+                                        to={"/dashboard/manageUsers"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Manage Users"
+                                    >
                                         <FaUsersSlash className="text-xl" />
                                         <span className="is-drawer-close:hidden">Manage Users</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/manageRequests"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Manage Requests">
+                                    <NavLink
+                                        to={"/dashboard/manageRequests"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Manage Requests"
+                                    >
                                         <CiSquareQuestion className="text-xl" />
                                         <span className="is-drawer-close:hidden">Manage Requests</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/plateformStatistics"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Plateform Statistics">
+                                    <NavLink
+                                        to={"/dashboard/plateformStatistics"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Plateform Statistics"
+                                    >
                                         <FcStatistics className="text-xl" />
                                         <span className="is-drawer-close:hidden">Plateform Statistics</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </>
                         )}
                         {role === "user" && (
                             <>
                                 <li>
-                                    <Link to={"/dashboard/myOrders"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Orders">
+                                    <NavLink
+                                        to={"/dashboard/myOrders"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="My Orders"
+                                    >
                                         <GoListOrdered className="text-xl" />
                                         <span className="is-drawer-close:hidden">My Orders</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/review"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Review">
+                                    <NavLink
+                                        to={"/dashboard/review"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="My Review"
+                                    >
                                         <VscPreview className="text-xl" />
                                         <span className="is-drawer-close:hidden">My Review</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/favouriteMeal"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Favourite Meal">
+                                    <NavLink
+                                        to={"/dashboard/favouriteMeal"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Favourite Meal"
+                                    >
                                         <GiMeal className="text-xl" />
                                         <span className="is-drawer-close:hidden">Favourite Meal</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </>
                         )}
                         {role === "chef" && (
                             <>
                                 <li>
-                                    <Link to={"/dashboard/createMeal"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Create Meal">
+                                    <NavLink
+                                        to={"/dashboard/createMeal"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Create Meal"
+                                    >
                                         <GiHotMeal className="text-xl" />
                                         <span className="is-drawer-close:hidden">Create Meal</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/myMeals"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="My Meal">
+                                    <NavLink
+                                        to={"/dashboard/myMeals"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="My Meal"
+                                    >
                                         <MdNoMeals className="text-xl" />
                                         <span className="is-drawer-close:hidden">My Meal</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to={"/dashboard/orderRequests"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2" data-tip="Order Requests">
+                                    <NavLink
+                                        to={"/dashboard/orderRequests"}
+                                        className={({ isActive }) =>
+                                            `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
+      ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`
+                                        }
+                                        data-tip="Order Requests"
+                                    >
                                         <LuListEnd className="text-xl" />
                                         <span className="is-drawer-close:hidden">Order Requests</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </>
                         )}

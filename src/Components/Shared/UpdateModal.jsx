@@ -11,7 +11,7 @@ const UpdateModal = ({ isOpen, onClose, meal, refetch }) => {
     const [newImageFile, setNewImageFile] = useState(null);
     const [preview, setPreview] = useState("");
 
-    // ⭐ Safe reset when meal changes
+    
     useEffect(() => {
         if (meal) {
             reset({
@@ -21,6 +21,7 @@ const UpdateModal = ({ isOpen, onClose, meal, refetch }) => {
                 ingredients: meal.ingredients.join(", "),
                 estimatedDeliveryTime: meal.estimatedDeliveryTime,
                 chefExperience: meal.chefExperience,
+                deliveryArea: meal.deliveryArea,
             });
 
             setPreview(meal.foodImage || "");
@@ -66,6 +67,7 @@ const UpdateModal = ({ isOpen, onClose, meal, refetch }) => {
             estimatedDeliveryTime: data.estimatedDeliveryTime,
             chefExperience: data.chefExperience,
             foodImage: imageUrl,
+            deliveryArea: data.deliveryArea,
         };
 
         const res = await axiosSecure.patch(`/meals/${meal._id}`, updatedMeal);
@@ -92,12 +94,26 @@ const UpdateModal = ({ isOpen, onClose, meal, refetch }) => {
                 <h3 className="font-bold text-lg mb-4">Update Meal</h3>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+                    <label className="font-bold">Food Name:</label>
                     <input type="text" {...register("foodName")} className="input input-bordered w-full" />
+
+                    <label className="font-bold">Price:</label>
                     <input type="number" step="0.01" {...register("price")} className="input input-bordered w-full" />
+
+                    <label className="font-bold">Rating:</label>
                     <input type="number" step="0.1" min="0" max="5" {...register("rating")} className="input input-bordered w-full" />
+
+                    <label className="font-bold">Ingredients:</label>
                     <textarea {...register("ingredients")} className="textarea textarea-bordered w-full" />
+
+                    <label className="font-bold">Delivery Time:</label>
                     <input type="text" {...register("estimatedDeliveryTime")} className="input input-bordered w-full" />
+
+                    <label className="font-bold">Chef Experience:</label>
                     <textarea {...register("chefExperience")} className="textarea textarea-bordered w-full" />
+
+                    <label className="font-bold">Delivery Area:</label>
+                    <textarea {...register("deliveryArea")} className="textarea textarea-bordered w-full" />
 
                     {/* Image Upload */}
                     <div>

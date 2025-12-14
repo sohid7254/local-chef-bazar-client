@@ -18,7 +18,7 @@ const Error404 = () => {
                     <h1 className="text-3xl font-bold text-red-500">Oops! You have come to wrong page</h1>
                     <p className="text-lg text-gray-600 mt-2">There is no page at this moment</p>
                     <div className="my-3 space-x-3">
-                        <Link to="/" className="btn btn-primary text-black">
+                        <Link to="/" className="btn bg-orange-500 text-black">
                             Go Back
                         </Link>
                     </div>

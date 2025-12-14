@@ -86,6 +86,7 @@ const CreateMeal = () => {
                 chefExperience: data.chefExperience,
                 chefId: userInfo?.chefId,
                 userEmail: user?.email,
+                deliveryArea: data.deliveryArea
                 
             };
 
@@ -175,6 +176,12 @@ const CreateMeal = () => {
                     <label className="text-lg font-bold">Estimated Delivery Time: </label>
                     <input type="text" placeholder="Estimated Delivery Time" {...register("estimatedDeliveryTime", { required: true })} className="input input-bordered w-full hover:border-primary hover:shadow-md transition-all duration-200" />
                     {errors.estimatedDeliveryTime && <p className="text-red-500 text-sm mt-1">Estimated delivery time is required</p>}
+                </div>
+                {/* Estimated Delivery area */}
+                <div>
+                    <label className="text-lg font-bold">Delivery Area: </label>
+                    <textarea type="text" placeholder="Delivery Area" {...register("deliveryArea", { required: true })} className="textarea textarea-bordered w-full hover:border-primary hover:shadow-md transition-all duration-200" />
+                    {errors.deliveryArea && <p className="text-red-500 text-sm mt-1">Delivery Area is required</p>}
                 </div>
 
                 {/* Chef Experience */}

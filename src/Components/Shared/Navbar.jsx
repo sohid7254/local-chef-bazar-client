@@ -47,7 +47,7 @@ const NavBar = () => {
 
             {user && (
                 <li>
-                    <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "underline px-2 py-1 text-primary font-semibold" : "px-2 py-1 font-semibold")}>
+                    <NavLink to="/dashboard/myProfile" className={({ isActive }) => (isActive ? "underline px-2 py-1 text-primary font-semibold" : "px-2 py-1 font-semibold")}>
                         Dashboard
                     </NavLink>
                 </li>

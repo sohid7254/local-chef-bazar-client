@@ -74,6 +74,9 @@ const MyMeals = () => {
                                 <strong>Delivery Time:</strong> {meal.estimatedDeliveryTime}
                             </p>
                             <p>
+                                <strong>Delivery Area:</strong> {meal.deliveryArea}
+                            </p>
+                            <p>
                                 <strong>Chef Name:</strong> {meal.chefName}
                             </p>
                             <p>
