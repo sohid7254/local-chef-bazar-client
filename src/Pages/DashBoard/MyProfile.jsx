@@ -53,6 +53,7 @@ const MyProfile = () => {
     if (profileLoading) return <Loading />;
 
     const requestedType = pendingRequest?.requestType;
+    
 
     return (
         <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 flex gap-8">

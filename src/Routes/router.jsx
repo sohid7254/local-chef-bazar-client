@@ -17,6 +17,7 @@ import Error404 from "../Components/Shared/Error404";
 import Error500 from "../Components/Shared/Error500";
 import PrivateRoute from "./PrivateRoute";
 import MealDetails from "../Pages/MealDetails/MealDetails";
+import AllMeals from "../Pages/AllMeals/AllMeals";
 
 
 
@@ -50,6 +51,11 @@ export const router = createBrowserRouter([
                 path: "register",
                 element: <Registeration />,
                 errorElement: <Error500 />,
+            },
+            {
+                path:"/meals",
+                Component: AllMeals,
+                errorElement: <Error500/>
             },
             {
                 path: "/mealDetails/:id",

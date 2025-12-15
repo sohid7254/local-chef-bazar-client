@@ -12,8 +12,8 @@ const Error404 = () => {
                             autoplay: true,
                             animationData: error,
                         }}
-                        height={200}
-                        width={200}
+                        height={400}
+                        width={400}
                     ></Lottie>
                     <h1 className="text-3xl font-bold text-red-500">Oops! You have come to wrong page</h1>
                     <p className="text-lg text-gray-600 mt-2">There is no page at this moment</p>

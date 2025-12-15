@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GoListOrdered, GoSidebarCollapse } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
-import { Link, NavLink, Outlet, useNavigate } from "react-router"; 
+import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import logo from "../../assets/logo1.png";
 import { FaUser, FaUsersSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
@@ -14,39 +14,52 @@ import { VscPreview } from "react-icons/vsc";
 import { CiSquareQuestion } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
 const DashboardLayout = () => {
-    const {user, logOut } = useAuth()
-    const {role} = useRole()
+    const { user, logOut } = useAuth();
+    const { role } = useRole();
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-      const navigate = useNavigate(); 
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
 
-      const handleLogout = () => {
-          logOut()
-              .then(() => {
-                  alert("Logged out successfully");
-                  console.log("Logged out successfully");
-                  navigate("/"); 
-              })
-              .catch((error) => console.error("Logout Error:", error));
-      };
+    const handleThemeToggle = (e) => {
+        setTheme(e.target.checked ? "dark" : "light");
+    };
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                alert("Logged out successfully");
+                console.log("Logged out successfully");
+                navigate("/");
+            })
+            .catch((error) => console.error("Logout Error:", error));
+    };
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Navbar */}
-                <nav className="navbar w-full bg-base-300 shahdow-md flex justify-between px-4">
+                <nav className="navbar w-full bg-base-300 shahdow-md flex justify-between px-2 sm:px-4">
                     <div className="flex items-center justify-center">
-                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
+                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost btn-sm sm:btn-md min-h-[44px]">
                             {/* Sidebar toggle icon */}
-                            <GoSidebarCollapse />
+                            <GoSidebarCollapse className="text-lg sm:text-xl" />
                         </label>
-                        <div className="px-4">Local Chef Bazar</div>
+                        <div className="px-2 sm:px-4 text-sm sm:text-base font-semibold">Local Chef Bazar</div>
                     </div>
 
-                    <div className="relative flex items-center gap-3 pr-5">
-                        <img src={user?.photoURL} alt="Profile" className="w-10 h-10 rounded-full border border-gray-300" />
-                        <div className="text-left">
-                            <p className="font-semibold">{user?.displayName}</p>
-                            <p className="text-sm text-gray-500">{role}</p>
+                    <div className="relative flex items-center gap-2 sm:gap-3 pr-2 sm:pr-5">
+                        <label>
+                            <input type="checkbox" className="toggle toggle-sm sm:toggle-md" onChange={handleThemeToggle} checked={theme === "dark"} />
+                        </label>
+                        <img src={user?.photoURL} alt="Profile" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300" />
+                        <div className="text-left hidden sm:block">
+                            <p className="font-semibold text-sm">{user?.displayName}</p>
+                            <p className="text-xs text-gray-500">{role}</p>
                         </div>
                     </div>
                 </nav>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import useAuth from '../../Hooks/useAuth';
-import Swal from 'sweetalert2';
+import React from "react";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
-const ReviewModal = ({ mealId }) => {
+const ReviewModal = ({ mealId, refetch }) => {
     const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -13,20 +13,26 @@ const ReviewModal = ({ mealId }) => {
         const reviewData = {
             foodId: mealId,
             reviewerName: user.displayName,
+            reviewerEmail: user.email,
+            reviewerImage: user.photoURL,
             rating: Number(data.rating),
             comment: data.comment,
-            data: new Date(),
-        }
+            date: new Date(),
+        };
 
-        const res = await axiosSecure.post("/reviews", reviewData)
-        if(res.data.insertedId){
-            Swal.fire("Success","Review Submitted successpully", "success")
+        const res = await axiosSecure.post("/reviews", reviewData);
+        if (res.data.success === true) {
+            document.getElementById("reviewModal").close();
+            Swal.fire("Success", "Review Submitted successpully", "success");
             reset();
-            document.getElementById("reviewModal").closest();
+            refetch();
+        }
+        if (res.data.success === false) {
+            alert("You have already reviewed");
         }
     };
     return (
-        <dialog id="reviewModal" className="modal">
+        <dialog id="reviewModal" className="modal" method="dialog">
             <div className="modal-box">
                 <h3 className="text-xl font-bold mb-4">Write a Review</h3>
 

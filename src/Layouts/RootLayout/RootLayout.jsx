@@ -5,21 +5,19 @@ import Footer from "../../Components/Shared/Footer";
 import useAuth from "../../Hooks/useAuth";
 import AppLoading from "../../Components/Shared/AppLoading";
 
-
-
 const RootLayout = () => {
-    const {loading} = useAuth();
-    if(loading){
-        return <AppLoading/>
+    const { loading } = useAuth();
+    if (loading) {
+        return <AppLoading />;
     }
     return (
-        <div className="flex flex-col min-h-screen text-base-content">
+        <div className=" flex flex-col min-h-screen text-base-content">
             {/* Navbar */}
             <NavBar />
 
             {/* Main Content - grows to fill available space */}
-            <main className="grow">
-                <div className="max-w-7xl mx-auto px-4 ">
+            <main className=" grow">
+                <div className="max-w-7xl mx-auto px-2 sm:px-4">
                     <Outlet />
                 </div>
             </main>

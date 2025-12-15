@@ -17,7 +17,7 @@ const MyMeals = () => {
     const {data: meals = [],refetch, isLoading} = useQuery({
         queryKey: ["my-meals", user?.email],
         queryFn: async() =>{
-            const res = await axiosSecure.get(`/meals/${user.email}`);
+            const res = await axiosSecure.get(`/meals/by-email/${user.email}`);
             return res.data
         }
     })

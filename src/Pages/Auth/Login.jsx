@@ -4,8 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 
-
-
 const LoginPage = () => {
     const {
         register,
@@ -17,7 +15,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleLogin = (data) => {
-        console.log(handleLogin, "clicked")
+        console.log(handleLogin, "clicked");
         signInUser(data.email, data.password)
             .then((res) => {
                 console.log(res.user);
@@ -36,11 +34,11 @@ const LoginPage = () => {
             </div>
 
             {/* RIGHT SIDE FORM */}
-            <div className="flex items-center justify-center p-8 ">
-                <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Login</h2>
+            <div className="flex items-center justify-center p-4 sm:p-6 md:p-8 ">
+                <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-6 sm:p-7 md:p-8">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-5 sm:mb-6 text-center">Login</h2>
 
-                    <form className="space-y-5" onSubmit={handleSubmit(handleLogin)}>
+                    <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit(handleLogin)}>
                         {/* Email */}
                         <div>
                             <label className="text-sm font-bold text-gray-600 dark:text-gray-200">Email:</label>
@@ -48,13 +46,13 @@ const LoginPage = () => {
                                 type="email"
                                 {...register("email", { required: true })}
                                 placeholder="Enter email"
-                                className="w-full mt-1 px-4 py-3 border rounded-lg 
-                 focus:ring-2 focus:ring-primary outline-none
+                                className="w-full mt-1 px-3 py-2.5 sm:px-4 sm:py-3 border rounded-lg 
+                 focus:ring-2 focus:ring-primary outline-none text-sm sm:text-base
                  text-gray-800 dark:text-gray-100 
                  bg-white dark:bg-gray-800 
-                 placeholder-gray-400 dark:placeholder-gray-500"
+                 placeholder-gray-400 dark:placeholder-gray-500 min-h-[44px]"
                             />
-                            {errors.email?.type === "required" && <p className="text-red-500">Email is a must nedded for LogIn</p>}
+                            {errors.email?.type === "required" && <p className="text-red-500 text-xs sm:text-sm mt-1">Email is a must nedded for LogIn</p>}
                         </div>
 
                         {/* Password */}
@@ -71,37 +69,37 @@ const LoginPage = () => {
                                 })}
                                 type="password"
                                 placeholder="Enter password"
-                                className="w-full mt-1 px-4 py-3 border rounded-lg 
-                 focus:ring-2 focus:ring-primary outline-none
+                                className="w-full mt-1 px-3 py-2.5 sm:px-4 sm:py-3 border rounded-lg 
+                 focus:ring-2 focus:ring-primary outline-none text-sm sm:text-base
                  text-gray-800 dark:text-gray-100 
                  bg-white dark:bg-gray-800 
-                 placeholder-gray-400 dark:placeholder-gray-500"
+                 placeholder-gray-400 dark:placeholder-gray-500 min-h-[44px]"
                             />
-                            {errors.password?.type === "required" && <p className="text-red-500">You must input a valid passord</p>}
-                            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                            {errors.password?.type === "required" && <p className="text-red-500 text-xs sm:text-sm mt-1">You must input a valid passord</p>}
+                            {errors.password && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.password.message}</p>}
                         </div>
 
                         {/* Login Button */}
                         <button
                             type="submit"
-                            className="btn w-full py-3 bg-primary text-white font-bold cursor-pointer rounded-lg 
-               hover:bg-thi transition"
+                            className="btn w-full py-2.5 sm:py-3 bg-primary text-white font-bold cursor-pointer rounded-lg 
+               hover:bg-thi transition text-sm sm:text-base min-h-[44px]"
                         >
                             Login
                         </button>
                     </form>
                     {/* Register Button */}
-                    <div className="flex items-center my-6">
+                    <div className="flex items-center my-5 sm:my-6">
                         <hr className="grow border-gray-300" />
-                        <span className="px-2 text-gray-500 text-sm">Or</span>
+                        <span className="px-2 text-gray-500 text-xs sm:text-sm">Or</span>
                         <hr className="grow border-gray-300" />
                     </div>
                     <Link
                         to="/register"
                         type="button"
                         className="
-                    btn w-full py-3  font-semibold cursor-pointer rounded-lg
-                     transition"
+                    btn w-full py-2.5 sm:py-3 font-semibold cursor-pointer rounded-lg
+                     transition text-sm sm:text-base min-h-[44px]"
                     >
                         Register
                     </Link>
