@@ -36,6 +36,8 @@ const ManageRequests = () => {
                 timer: 1500,
             });
             queryClient.invalidateQueries(["all-requests"]);
+            queryClient.invalidateQueries(["user-profile", req.userEmail]);
+            queryClient.invalidateQueries(["pending-request", req.userEmail]);
         }
     }
 
@@ -55,6 +57,8 @@ const ManageRequests = () => {
                 timer: 1500,
             });
             queryClient.invalidateQueries(["all-requests"]);
+            queryClient.invalidateQueries(["user-profile", req.userEmail]);
+            queryClient.invalidateQueries(["pending-request", req.userEmail]);
             
         }
     }
