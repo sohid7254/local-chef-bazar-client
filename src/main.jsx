@@ -5,13 +5,16 @@ import { router } from "./Routes/router";
 import { RouterProvider } from "react-router";
 import AuthProvider from "./Context/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LenisProvider from "./Hooks/LenisProviders";
 
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
-                <RouterProvider router={router} />
+                <LenisProvider>
+                 <RouterProvider router={router} />   
+                </LenisProvider>
             </AuthProvider>
         </QueryClientProvider>
     </StrictMode>

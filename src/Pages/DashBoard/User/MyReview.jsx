@@ -11,7 +11,7 @@ const MyReview = () => {
     const { user } = useAuth();
     const queryClient = useQueryClient();
     const [editingReview, setEditingReview] = useState(null);
-    const { register, handleSubmit, reset} = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const { data: myReview = [] } = useQuery({
         queryKey: ["myReview", user?.email],
@@ -24,7 +24,7 @@ const MyReview = () => {
     const openModal = (review) => {
         setEditingReview(review);
         reset({ rating: review.rating, comment: review.comment });
-        document.getElementById("updateModal").showModal()
+        document.getElementById("updateModal").showModal();
     };
 
     const handleDelete = (id) => {
@@ -46,7 +46,7 @@ const MyReview = () => {
         const res = await axiosSecure.patch(`/reviews/${editingReview._id}`, data);
         if (res.data.success) {
             Swal.fire("Updated!", "Your review has been updated.", "success");
-            document.getElementById("updateModal").close()
+            document.getElementById("updateModal").close();
             setEditingReview(null);
             reset();
             queryClient.invalidateQueries(["myReview", user?.email]);
@@ -103,10 +103,23 @@ const MyReview = () => {
 
                     <label className="block mt-4 mb-2">Comment</label>
                     <textarea {...register("comment", { required: true })} className="textarea textarea-bordered w-full"></textarea>
+                    <div className="flex justify-between gap-5 items-center">
+                        <button
+                            type="button"
+                            className="btn bg-red-300 mt-4"
+                            onClick={() => {
+                                document.getElementById("updateModal").close();
+                                reset();
+                                setEditingReview(null);
+                            }}
+                        >
+                            Cancel
+                        </button>
 
-                    <button type="submit" className="btn btn-green-400 mt-4 w-full">
-                        Update
-                    </button>
+                        <button type="submit" className="btn bg-green-400 mt-4">
+                            Update
+                        </button>
+                    </div>
                 </form>
             </dialog>
         </div>

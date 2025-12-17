@@ -20,6 +20,8 @@ import MealDetails from "../Pages/MealDetails/MealDetails";
 import AllMeals from "../Pages/AllMeals/AllMeals";
 import MyReview from "../Pages/DashBoard/User/MyReview";
 import FavMeal from "../Pages/DashBoard/User/FavMeal";
+import AdminRoute from "./AdminRoute";
+import ChefRoute from "./ChefRoute";
 
 
 
@@ -79,26 +81,45 @@ export const router = createBrowserRouter([
                 element: <MyProfile />,
                 errorElement: <Error500 />,
             },
+            // admin route
             {
                 path: "manageRequests",
-                element: <ManageRequests />,
+                element: (
+                    <AdminRoute>
+                        <ManageRequests />
+                    </AdminRoute>
+                ),
                 errorElement: <Error500 />,
             },
             {
                 path: "manageUsers",
-                element: <ManageUsers />,
+                element: (
+                    <AdminRoute>
+                        <ManageUsers />
+                    </AdminRoute>
+                ),
                 errorElement: <Error500 />,
             },
+            // chef route
             {
                 path: "createMeal",
-                element: <CreateMeals />,
+                element: (
+                    <ChefRoute>
+                        <CreateMeals />
+                    </ChefRoute>
+                ),
                 errorElement: <Error500 />,
             },
             {
                 path: "myMeals",
-                element: <MyMeals />,
+                element: (
+                    <ChefRoute>
+                        <MyMeals />
+                    </ChefRoute>
+                ),
                 errorElement: <Error500 />,
             },
+            // user route
             {
                 path: "myReview",
                 element: <MyReview />,
@@ -106,8 +127,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "favouriteMeal",
-                element: <FavMeal/>,
-                errorElement: <Error500/>,
+                element: <FavMeal />,
+                errorElement: <Error500 />,
             },
         ],
     },

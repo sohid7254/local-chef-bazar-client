@@ -15,10 +15,18 @@ const MealDetails = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const { data: meal = [], refetch } = useQuery({
+    const { data: meal = {} } = useQuery({
         queryKey: ["meal", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/meals/${id}`);
+            return res.data;
+        },
+    });
+    
+    const { data: reviews = [], refetch: reviewRefetch } = useQuery({
+        queryKey: ["reviews", meal._id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/reviews/${meal._id}`);
             return res.data;
         },
     });
@@ -104,8 +112,8 @@ const MealDetails = () => {
                     </div>
                 </div>
             </div>
-            <MealReview mealId={meal?._id} />
-            <ReviewModal mealId={meal?._id} mealName={meal?.foodName} refetch={refetch} />
+            <MealReview reviews={reviews} />
+            <ReviewModal mealId={meal?._id} mealName={meal?.foodName} refetch={reviewRefetch} />
         </div>
     );
 };

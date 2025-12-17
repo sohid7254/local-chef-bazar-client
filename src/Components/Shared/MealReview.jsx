@@ -3,21 +3,13 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import tik from "../../assets/reviewQuote.png";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
 import { FaStarHalfAlt } from "react-icons/fa";
 
-const MealReview = ({ mealId }) => {
-    const axiosSecure = useAxiosSecure();
-    const { data: reviews = [] } = useQuery({
-        queryKey: ["reviews", mealId],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/reviews/${mealId}`);
-            return res.data;
-        },
-    });
+const MealReview = ({ reviews }) => {
+    
     return (
         <div className="max-w-6xl mx-auto px-4 my-10">
             <h2 className="text-4xl text-center font-bold mb-4">What our customers are saying</h2>
