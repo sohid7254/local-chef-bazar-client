@@ -9,16 +9,22 @@ import { FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 const AllMeals = () => {
     const [sortPrice, setSortPrice] = useState("asc");
     const [searchText, setSearchText] = useState("");
+    const [page, setPage] = useState(1)
     const axiosSecure = useAxiosSecure();
 
-    const { data: meals = [], isLoading } = useQuery({
-        queryKey: ["all-meals"],
+    const limit = 10;
+
+    const { data, isLoading } = useQuery({
+        queryKey: ["all-meals",page],
         queryFn: async () => {
-            const res = await axiosSecure.get("/meals");
+            const res = await axiosSecure.get(`/meals?page=${page}&limit=10`);
             return res.data;
         },
     });
-    console.log(meals)
+    const meals = data?.meals || [];
+    const total = data?.total || 0;
+    const totalPage = Math.ceil(total / limit);
+
     const filteredMeals = meals.filter((meal) => meal.foodName.toLowerCase().includes(searchText.toLowerCase()));
     const sortedMeals = [...filteredMeals].sort((a, b) => {
         return sortPrice === "asc" ? a.price - b.price : b.price - a.price;
@@ -78,6 +84,14 @@ const AllMeals = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className=" mt-6 flex gap-4 ">
+                <button disabled={page === 1} onClick={() => setPage(page - 1)} className="btn btn-sm">
+                    Previous
+                </button>
+                <button disabled={page === totalPage} onClick={() => setPage(page + 1)} className="btn btn-sm">
+                    Next
+                </button>
             </div>
         </div>
     );
