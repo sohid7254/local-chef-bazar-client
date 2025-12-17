@@ -5,16 +5,15 @@ import { FaStarHalfAlt } from "react-icons/fa";
 const ReviewsCard = ({ review }) => {
     return (
         <div className="w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-sm p-6 rounded-lg border border-gray-300 dark:border-gray-600 shadow-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
-            {/* Quote Icon */}
+            
             <div className="mb-4 flex items-center">
                 <img src={tik} alt="quote" className="w-6 h-6 opacity-40 mr-2" />
                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Customer says:</span>
             </div>
 
-            {/* Quote Text */}
+            
             <p className="mb-4 text-base leading-relaxed border border-dashed border-gray-300 dark:border-gray-600 p-3 rounded">{review.comment}</p>
 
-            {/* Divider */}
             <div className="border-t border-dashed border-gray-300 dark:border-gray-600 my-4"></div>
 
             {/* Author Info */}

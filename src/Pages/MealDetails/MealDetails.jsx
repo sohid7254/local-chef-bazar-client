@@ -104,8 +104,8 @@ const MealDetails = () => {
                     </div>
                 </div>
             </div>
-            <MealReview mealId={meal._id} />
-            <ReviewModal mealId={meal._id} refetch={refetch} />
+            <MealReview mealId={meal?._id} />
+            <ReviewModal mealId={meal?._id} mealName={meal?.foodName} refetch={refetch} />
         </div>
     );
 };

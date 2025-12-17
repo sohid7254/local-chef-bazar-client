@@ -4,7 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
-const ReviewModal = ({ mealId, refetch }) => {
+const ReviewModal = ({ mealId,mealName, refetch }) => {
     const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -12,6 +12,7 @@ const ReviewModal = ({ mealId, refetch }) => {
     const handleReviewSubmit = async (data) => {
         const reviewData = {
             foodId: mealId,
+            mealName: mealName,
             reviewerName: user.displayName,
             reviewerEmail: user.email,
             reviewerImage: user.photoURL,

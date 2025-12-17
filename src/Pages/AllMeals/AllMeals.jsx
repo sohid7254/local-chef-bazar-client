@@ -30,14 +30,14 @@ const AllMeals = () => {
             <div className="flex justify-between mb-10">
                 <div className="flex items-center gap-2 w-200">
                     <h2 className="text-xl font-bold">Search Here:</h2>
-                    <label className="input">
+                    <label className="input  outline-none">
                         <IoSearchOutline className="text-xl" />
-                        <input type="text" className="input input-bordered" value={searchText} placeholder="Search By Meal Name" onChange={(e) => setSearchText(e.target.value)} />
+                        <input type="text" className="input border-none focus:outline-none" value={searchText} placeholder="Search By Meal Name" onChange={(e) => setSearchText(e.target.value)} />
                     </label>
                 </div>
                 <div className="flex items-center gap-2">
                     <h1 className="text-xl font-bold">Sort Here:</h1>
-                    <select className="select select-bordered w-40" value={sortPrice} onChange={(e) => setSortPrice(e.target.value)}>
+                    <select className="select select-bordered w-40 border-none outline-none" value={sortPrice} onChange={(e) => setSortPrice(e.target.value)}>
                         <option value="asc">Price: Low → High</option>
                         <option value="desc">Price: High → Low</option>
                     </select>

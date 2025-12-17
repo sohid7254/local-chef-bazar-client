@@ -63,28 +63,25 @@ const MyProfile = () => {
 
     return (
         <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 flex gap-8">
-            
             <div className="shrink-0">
                 <img src={profile?.photoURL} alt="User" className="w-48 h-48 rounded-lg border object-cover" />
             </div>
 
-            
             <div className="flex flex-col justify-between flex-1">
-                
                 <div className="space-y-2">
-                    <h2 className="text-2xl font-bold">
+                    <h2 className="text-2xl text-black font-bold">
                         <strong>Name:</strong> {profile?.displayName}
                     </h2>
                     <p className="text-gray-600">
                         <strong>Email:</strong> {profile?.email}
                     </p>
-                    <p>
+                    <p className="text-gray-600">
                         <strong>Address:</strong> {profile?.address}
                     </p>
-                    <p>
+                    <p className="text-gray-600">
                         <strong>Role:</strong> {profile?.role}
                     </p>
-                    <p>
+                    <p className="text-gray-600">
                         <strong>Status:</strong> {profile?.status}
                     </p>
 
@@ -95,7 +92,6 @@ const MyProfile = () => {
                     )}
                 </div>
 
-                
                 <div className="mt-6 flex gap-4">
                     {profile?.role !== "admin" && !isFinal && (
                         <>

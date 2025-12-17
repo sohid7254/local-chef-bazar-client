@@ -18,6 +18,7 @@ import Error500 from "../Components/Shared/Error500";
 import PrivateRoute from "./PrivateRoute";
 import MealDetails from "../Pages/MealDetails/MealDetails";
 import AllMeals from "../Pages/AllMeals/AllMeals";
+import MyReview from "../Pages/DashBoard/User/MyReview";
 
 
 
@@ -95,6 +96,11 @@ export const router = createBrowserRouter([
                 element: <MyMeals />,
                 errorElement: <Error500 />,
             },
+            {
+                path: "myReview",
+                element: <MyReview/>,
+                errorElement: <Error500/>
+            }
         ],
     },
     {
