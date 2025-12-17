@@ -19,6 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import MealDetails from "../Pages/MealDetails/MealDetails";
 import AllMeals from "../Pages/AllMeals/AllMeals";
 import MyReview from "../Pages/DashBoard/User/MyReview";
+import FavMeal from "../Pages/DashBoard/User/FavMeal";
 
 
 
@@ -54,16 +55,18 @@ export const router = createBrowserRouter([
                 errorElement: <Error500 />,
             },
             {
-                path:"/meals",
+                path: "/meals",
                 Component: AllMeals,
-                errorElement: <Error500/>
+                errorElement: <Error500 />,
             },
             {
                 path: "/mealDetails/:id",
-                element: <PrivateRoute>
-                    <MealDetails/>
-                </PrivateRoute>,
-                errorElement: <Error500/>
+                element: (
+                    <PrivateRoute>
+                        <MealDetails />
+                    </PrivateRoute>
+                ),
+                errorElement: <Error500 />,
             },
         ],
     },
@@ -98,9 +101,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: "myReview",
-                element: <MyReview/>,
-                errorElement: <Error500/>
-            }
+                element: <MyReview />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "favouriteMeal",
+                element: <FavMeal/>,
+                errorElement: <Error500/>,
+            },
         ],
     },
     {

@@ -54,7 +54,7 @@ const MyReview = () => {
     };
     return (
         <div>
-            <h1>My Reviews</h1>
+            <h1 className="text-xl font-bold ml-5 my-5">My Reviews: {myReview.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
