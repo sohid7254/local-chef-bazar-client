@@ -1,7 +1,9 @@
 import React from 'react';
-import Lottie from 'react-lottie';
+
 import { Link } from 'react-router';
 import errorAnimation from "../../assets/json/Error500.json"
+import Lottie from 'react-lottie';
+
 
 const Error500 = () => {
     return (

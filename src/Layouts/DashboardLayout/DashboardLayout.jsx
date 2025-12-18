@@ -45,7 +45,7 @@ const DashboardLayout = () => {
                 {/* Navbar */}
                 <nav className="navbar w-full bg-base-300 shahdow-md flex justify-between px-2 sm:px-4">
                     <div className="flex items-center justify-center">
-                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost btn-sm sm:btn-md min-h-[44px]">
+                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost btn-sm sm:btn-md min-h-11">
                             {/* Sidebar toggle icon */}
                             <GoSidebarCollapse className="text-lg sm:text-xl" />
                         </label>

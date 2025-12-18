@@ -97,7 +97,7 @@ const MealDetails = () => {
 
                     {/* Buttons (Right bottom) */}
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <button onClick={() => navigate(`/order/${meal._id}`)} className="btn bg-orange-300 w-full min-h-11">
+                        <button onClick={() => navigate(`/order/${meal._id}`)} meal={meal._id} className="btn bg-orange-300 w-full min-h-11">
                             Order Now
                         </button>
                         <button onClick={handleAddFav} className="btn bg-orange-300 w-full min-h-11">

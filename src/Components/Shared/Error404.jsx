@@ -1,7 +1,9 @@
 import React from 'react';
-import Lottie from 'react-lottie';
+
 import { Link } from 'react-router';
 import error from "../../assets/json/Error 404.json"
+import Lottie from 'react-lottie';
+
 
 const Error404 = () => {
     return (

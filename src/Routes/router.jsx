@@ -5,8 +5,6 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import LoginPage from "../Pages/Auth/Login";
 import Registeration from "../Pages/Auth/Registeration";
-import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
-
 import RootLayout from "../Layouts/RootLayout/RootLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile";
 import ManageRequests from "../Pages/DashBoard/Admin/ManageRequests";
@@ -22,6 +20,10 @@ import MyReview from "../Pages/DashBoard/User/MyReview";
 import FavMeal from "../Pages/DashBoard/User/FavMeal";
 import AdminRoute from "./AdminRoute";
 import ChefRoute from "./ChefRoute";
+import OrderMeal from "../Components/Order/OrderMeal";
+import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
+import MyOrders from "../Pages/DashBoard/User/MyOrders";
+import OrderRequests from "../Pages/DashBoard/Chef/OrderRequests";
 
 
 
@@ -70,11 +72,24 @@ export const router = createBrowserRouter([
                 ),
                 errorElement: <Error500 />,
             },
+            {
+                path: "/order/:id",
+                element: (
+                    <PrivateRoute>
+                        <OrderMeal />
+                    </PrivateRoute>
+                ),
+                errorElement: <Error500 />,
+            },
         ],
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: (
+            <PrivateRoute>
+                <DashboardLayout />
+            </PrivateRoute>
+        ),
         children: [
             {
                 path: "myProfile",
@@ -111,6 +126,14 @@ export const router = createBrowserRouter([
                 errorElement: <Error500 />,
             },
             {
+                path: "orderRequests",
+                element: (
+                    <ChefRoute>
+                        <OrderRequests />
+                    </ChefRoute>
+                ),
+            },
+            {
                 path: "myMeals",
                 element: (
                     <ChefRoute>
@@ -128,6 +151,11 @@ export const router = createBrowserRouter([
             {
                 path: "favouriteMeal",
                 element: <FavMeal />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "myOrders",
+                element: <MyOrders />,
                 errorElement: <Error500 />,
             },
         ],
