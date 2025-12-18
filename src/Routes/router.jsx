@@ -24,6 +24,8 @@ import OrderMeal from "../Components/Order/OrderMeal";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import MyOrders from "../Pages/DashBoard/User/MyOrders";
 import OrderRequests from "../Pages/DashBoard/Chef/OrderRequests";
+import PaymentCancelled from "../Pages/DashBoard/Payment/PaymentCancelled";
+import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
 
 
 
@@ -157,6 +159,14 @@ export const router = createBrowserRouter([
                 path: "myOrders",
                 element: <MyOrders />,
                 errorElement: <Error500 />,
+            },
+            {
+                path: "payment-cancelled",
+                element: <PaymentCancelled />,
+            },
+            {
+                path: "payment-success",
+                element: <PaymentSuccess/>
             },
         ],
     },

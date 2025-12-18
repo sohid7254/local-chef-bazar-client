@@ -9,12 +9,13 @@ const OrderRequests = () => {
     const axiosSecure = useAxiosSecure();
     const chefEmail = user?.email
     const {data: orders = [],refetch} = useQuery({
-        queryKey: ["chefOrders",],
+        queryKey: ["chefOrders"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/orders/by-chef/${chefEmail}`);
             return res.data
         }
     })
+    console.log(chefEmail)
 
     const updateOrderStatus = async(id,status) => {
         try{
@@ -59,11 +60,15 @@ const OrderRequests = () => {
                                 <td>{order.mealName}</td>
                                 <td>{order.price}</td>
                                 <td>{order.quantity}</td>
-                                <td>{order.orderStatus}</td>
+                                <td>
+                                    <span className="badge bg-amber-400 text-black">{order.orderStatus}</span>
+                                </td>
 
                                 <td>{order.userEmail}</td>
                                 <td>{new Date(order.orderTime).toDateString()}</td>
-                                <td>{order.paymentStatus}</td>
+                                <td>
+                                    <span className='badge bg-green-400 text-black'>{order.paymentStatus}</span>
+                                </td>
                                 <td>
                                     <div className="flex gap-1">
                                         <button className={`btn btn-sm ${statusFlags.pending ? "bg-red-500 text-white" : "bg-gray-300 text-gray-600 cursor-not-allowed"}`} disabled={!statusFlags.pending} onClick={() => updateOrderStatus(order._id, "cancelled")}>
@@ -74,7 +79,6 @@ const OrderRequests = () => {
                                             Accept
                                         </button>
                                         <button className={`btn btn-sm ${statusFlags.accepted ? "bg-yellow-500 text-black" : "bg-gray-300 text-gray-600 cursor-not-allowed"}`} disabled={!statusFlags.accepted} onClick={() => updateOrderStatus(order._id, "delivered")}>
-                                            
                                             Deliver
                                         </button>
                                     </div>

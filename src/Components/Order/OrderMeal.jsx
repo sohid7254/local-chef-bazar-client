@@ -48,14 +48,15 @@ const OrderMeal = () => {
             if(result.isConfirmed){
                 const orderData = {
                     foodId: meal?._id,
+                    chefName: meal?.chefName,
                     mealName: data.mealName,
                     price: data.price,
                     quantity: data.quantity,
                     chefId: data.chefId,
                     userEmail: data.userEmail,
                     userAddress: data.userAddress,
-                    chefEmail:data.chefEmail,
-                }
+                    chefEmail: meal?.userEmail,
+                };
                 const res = await axiosSecure.post("/orders", orderData)
                 if(res.data.insertedId){
                     Swal.fire("Success","Order placed successfully", "success")
@@ -89,11 +90,6 @@ const OrderMeal = () => {
                     <label className="font-semibold">Chef ID</label>
                     <input {...register("chefId")} readOnly className="input input-bordered w-full" />
                 </div>
-                <div>
-                    <label className="font-semibold">Chef Email</label>
-                    <input {...register("chefEmail")} readOnly className="input input-bordered w-full" />
-                </div>
-
                 <div>
                     <label className="font-semibold">Your Email</label>
                     <input {...register("userEmail")} readOnly className="input input-bordered w-full" />
