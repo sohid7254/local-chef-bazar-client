@@ -9,6 +9,7 @@ const MyProfile = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
+    // Fetch user profile
     const { data: profile = {}, isLoading: profileLoading } = useQuery({
         queryKey: ["user-profile", user?.email],
         enabled: !!user?.email,
@@ -18,6 +19,7 @@ const MyProfile = () => {
         },
     });
 
+    // Fetch pending request
     const { data: pendingRequest = [] } = useQuery({
         queryKey: ["pending-request", user?.email],
         enabled: !!user?.email,
@@ -44,6 +46,8 @@ const MyProfile = () => {
             const res = await axiosSecure.post("/requests", requestData);
             if (res.data.insertedId) {
                 alert(`Your request to become a ${requestType} has been submitted.`);
+
+                // Auto update UI without reload
                 queryClient.invalidateQueries(["pending-request", user?.email]);
                 queryClient.invalidateQueries(["user-profile", user?.email]);
             }
@@ -55,54 +59,54 @@ const MyProfile = () => {
     if (profileLoading) return <Loading />;
 
     return (
-        <div className="max-w-4xl w-full mx-auto mt-10 px-4 sm:px-6 md:px-8">
-            <div className="flex flex-col md:flex-row gap-8 justify-center items-center md:items-start">
-                {/* IMAGE CONTAINER */}
-                <div className="  ">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+            <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8">
+                {/* IMAGE SECTION */}
+                <div className="flex justify-center md:block md:flex-shrink-0">
                     <img
                         src={profile?.photoURL}
                         alt="User"
-                        className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 
-                                   rounded-full object-cover border-4 border-primary"
+                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 
+                           rounded-lg border object-cover"
                     />
                 </div>
 
-                {/* DETAILS CONTAINER */}
-                <div className="bg-white shadow-lg rounded-lg p-6 flex-1 w-full md:w-2/3">
-                    <div className="space-y-2 text-center md:text-left">
-                        <h2 className="text-2xl font-bold text-black">
+                {/* DETAILS SECTION */}
+                <div className="flex flex-col justify-between flex-1">
+                    <div className="space-y-2 sm:space-y-3 text-center md:text-left">
+                        <h2 className="text-xl sm:text-2xl text-black font-bold">
                             <strong>Name:</strong> {profile?.displayName}
                         </h2>
-                        <p className="text-gray-600">
+                        <p className="text-sm sm:text-base text-gray-600">
                             <strong>Email:</strong> {profile?.email}
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-sm sm:text-base text-gray-600">
                             <strong>Address:</strong> {profile?.address}
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-sm sm:text-base text-gray-600">
                             <strong>Role:</strong> {profile?.role}
                         </p>
-                        <p className="text-gray-600">
+                        <p className="text-sm sm:text-base text-gray-600">
                             <strong>Status:</strong> {profile?.status}
                         </p>
 
                         {profile?.role === "chef" && (
-                            <p className="text-black">
+                            <p className="text-sm sm:text-base text-black">
                                 <strong>Chef Id:</strong> {profile?.chefId}
                             </p>
                         )}
                     </div>
 
                     {/* BUTTONS */}
-                    <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                         {profile?.role !== "admin" && !isFinal && (
                             <>
                                 {profile?.role !== "chef" && (
                                     <button
                                         onClick={() => handleRequest("chef")}
                                         disabled={requestedType === "chef" && requestStatus === "pending"}
-                                        className={`px-4 py-2 rounded transition duration-300 
-                                            ${requestedType === "chef" && requestStatus === "pending" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-primary text-white hover:bg-primary/80 hover:scale-105"}`}
+                                        className={`px-4 py-2 text-sm sm:text-base rounded transition duration-300 
+                                    ${requestedType === "chef" && requestStatus === "pending" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-primary text-white hover:bg-primary/80 hover:scale-105"}`}
                                     >
                                         {requestedType === "chef" && requestStatus === "pending" ? "Requested" : "Be a Chef"}
                                     </button>
@@ -111,8 +115,8 @@ const MyProfile = () => {
                                 <button
                                     onClick={() => handleRequest("admin")}
                                     disabled={requestedType === "admin" && requestStatus === "pending"}
-                                    className={`px-4 py-2 rounded transition duration-300 
-                                        ${requestedType === "admin" && requestStatus === "pending" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-secondary text-black hover:bg-secondary/80 hover:scale-105"}`}
+                                    className={`px-4 py-2 text-sm sm:text-base rounded transition duration-300 
+                                ${requestedType === "admin" && requestStatus === "pending" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-secondary hover:bg-secondary/80 hover:scale-105"}`}
                                 >
                                     {requestedType === "admin" && requestStatus === "pending" ? "Requested" : "Be an Admin"}
                                 </button>

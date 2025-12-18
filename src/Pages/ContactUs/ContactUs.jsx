@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoCallOutline } from "react-icons/io5";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ContactUs = () => {
+    const axiosSecure = useAxiosSecure()
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    })
+    const handleChange = (e) => {
+        e.preventDefault();
+        setFormData({...formData, [e.target.name]: e.target.value})
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await axiosSecure.post("/contact", formData);
+        if(res.data.success){
+            Swal.fire("Success", "We will contact you soon", "success")
+            setFormData({name: "", email: "", message: ""})
+        }
+    }
     return (
         <div className="max-w-7xl mx-auto px-4 py-8 sm:py-10 md:py-12">
             {/* ✅ Page Title */}
@@ -43,54 +63,33 @@ const ContactUs = () => {
             </div>
 
             {/* ✅ Contact Form */}
-            <div
-                className="max-w-2xl mx-auto text-black bg-[#d8e6d5] p-4 sm:p-6 md:p-8 rounded-xl shadow-md 
-                            transition-all duration-300 hover:shadow-xl"
-            >
-                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Send Us a Message</h2>
+            <div className="max-w-2xl mx-auto  p-6 md:p-8 rounded-xl shadow-md hover:shadow-xl transition">
+                <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Send Us a Message</h2>
 
-                <form className="space-y-4 sm:space-y-5">
-                    <div>
-                        <label className="block text-sm font-medium mb-1">Name</label>
-                        <input
-                            type="text"
-                            placeholder="Your name"
-                            className="w-full border border-gray-800 rounded-lg px-3 py-2 sm:px-4 sm:py-2.5
-                                       focus:outline-none transition-all duration-300 text-sm sm:text-base
-                                        focus:border-primary min-h-11"
-                        />
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Name */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-sm font-medium">Name</label>
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" className="w-full border border-gray-800 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" required />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium mb-1">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Your email"
-                            className="w-full border border-gray-800 rounded-lg px-3 py-2 sm:px-4 sm:py-2.5
-                                       focus:outline-none transition-all duration-300 text-sm sm:text-base
-                                        focus:border-primary min-h-11"
-                        />
+                    {/* Email */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-sm font-medium">Email</label>
+                        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your email" className="w-full border border-gray-800 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" required />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium mb-1">Message</label>
-                        <textarea
-                            rows="5"
-                            placeholder="Write your message..."
-                            className="w-full border border-gray-800 rounded-lg px-3 py-2 sm:px-4 sm:py-2.5
-                                       focus:outline-none transition-all duration-300 text-sm sm:text-base
-                                        focus:border-primary"
-                        ></textarea>
+                    {/* Message */}
+                    <div className="flex flex-col gap-1">
+                        <label className="text-sm font-medium">Message</label>
+                        <textarea name="message" rows="5" value={formData.message} onChange={handleChange} placeholder="Write your message..." className="w-full border border-gray-800 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary" required></textarea>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-[#00382f] text-white py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base
-                                   transition-all duration-300 hover:bg-[#00473d] min-h-11"
-                    >
+                    {/* Submit Button */}
+                    <button type="submit" className="w-full bg-[#00382f] text-white py-3 rounded-lg font-semibold hover:bg-[#00473d] transition">
                         Send Message
                     </button>
-                </form>
+                </form> 
             </div>
 
             {/* ✅ Working Hours */}

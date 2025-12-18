@@ -4,7 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
-const ReviewModal = ({ mealId,mealName, refetch }) => {
+const ReviewModal = ({ mealId,mealName, refetch, mealRefetch }) => {
     const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -27,6 +27,7 @@ const ReviewModal = ({ mealId,mealName, refetch }) => {
             Swal.fire("Success", "Review Submitted successpully", "success");
             reset();
             refetch();
+            mealRefetch()
         }
         if (res.data.success === false) {
             alert("You have already reviewed");

@@ -134,7 +134,7 @@ const CreateMeal = () => {
                 {/* Chef Name (auto-filled) */}
                 <div>
                     <label className="text-lg font-bold">Chef Name: </label>
-                    <input type="text" value={userInfo?.displayName} readOnly className="input input-bordered w-full bg-gray-100 hover:border-primary hover:shadow-md transition-all duration-200" />
+                    <input type="text" value={userInfo?.displayName} readOnly className="input input-bordered w-full  hover:border-primary hover:shadow-md transition-all duration-200" />
                 </div>
 
                 {/* Food Image */}
@@ -194,13 +194,13 @@ const CreateMeal = () => {
                 {/* Chef ID (auto-filled, read-only) */}
                 <div>
                     <label className="text-lg font-bold">Chef Id: </label>
-                    <input type="text" value={userInfo?.chefId} readOnly className="input input-bordered w-full bg-gray-100 hover:border-primary hover:shadow-md transition-all duration-200" />
+                    <input type="text" value={userInfo?.chefId} readOnly className="input input-bordered w-full  hover:border-primary hover:shadow-md transition-all duration-200" />
                 </div>
 
                 {/* User Email (auto-filled, read-only) */}
                 <div>
                     <label className="text-lg font-bold">Chef Email: </label>
-                    <input type="email" value={user?.email} readOnly className="input input-bordered w-full bg-gray-100 hover:border-primary hover:shadow-md transition-all duration-200" />
+                    <input type="email" value={user?.email} readOnly className="input input-bordered w-full  hover:border-primary hover:shadow-md transition-all duration-200" />
                 </div>
 
                 <button className="btn btn-primary w-full hover:border-primary hover:shadow-md transition-all duration-200">Create Meal</button>

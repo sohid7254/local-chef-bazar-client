@@ -24,7 +24,7 @@ const MyOrders = () => {
             orderId: order._id,
             userEmail: order.userEmail,
         })
-        console.log("Stripe URL:", res.data.url);
+        
         window.location.href = res.data.url
     }
     if (isLoading) return <AppLoading />;

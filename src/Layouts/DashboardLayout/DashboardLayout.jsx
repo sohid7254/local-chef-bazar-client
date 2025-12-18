@@ -39,9 +39,9 @@ const DashboardLayout = () => {
             .catch((error) => console.error("Logout Error:", error));
     };
     return (
-        <div className="drawer lg:drawer-open max-w-7xl mx-auto">
+        <div className="drawer lg:drawer-open min-h-screen max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content ">
                 {/* Navbar */}
                 <nav className="navbar w-full bg-base-300 shahdow-md flex justify-between px-2 sm:px-4">
                     <div className="flex items-center justify-center">
@@ -74,7 +74,10 @@ const DashboardLayout = () => {
                     {/* Sidebar content here */}
                     <ul className="menu">
                         <li>
+                            <Link to={"/"}>
                             <img src={logo} alt="logo" className="w-24 h-10 mx-auto mb-4 is-drawer-close:hidden" />
+                            </Link>
+                            
                         </li>
                         <li>
                             <Link to={"/"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-20" data-tip="Homepage">

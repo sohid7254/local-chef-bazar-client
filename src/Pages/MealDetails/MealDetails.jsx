@@ -8,6 +8,7 @@ import ReviewModal from "../../Components/Shared/ReviewModal";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import MealReview from "../../Components/Shared/MealReview";
+import AppLoading from "../../Components/Shared/AppLoading";
 
 const MealDetails = () => {
     const { user } = useAuth();
@@ -15,7 +16,7 @@ const MealDetails = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const { data: meal = {} } = useQuery({
+    const { data: meal = {},refetch: mealRefetch } = useQuery({
         queryKey: ["meal", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/meals/${id}`);
@@ -47,6 +48,7 @@ const MealDetails = () => {
             Swal.fire("Oops!", res.data.message, "info");
         }
     };
+    
 
     return (
         <div className="max-w-7xl mx-auto my-6 sm:my-8 md:my-10 p-4 sm:p-5 md:p-6 bg-base-300 shadow-lg rounded-lg">
@@ -113,7 +115,7 @@ const MealDetails = () => {
                 </div>
             </div>
             <MealReview reviews={reviews} />
-            <ReviewModal mealId={meal?._id} mealName={meal?.foodName} refetch={reviewRefetch} />
+            <ReviewModal mealId={meal?._id} mealName={meal?.foodName} refetch={reviewRefetch} mealRefetch={mealRefetch} />
         </div>
     );
 };
