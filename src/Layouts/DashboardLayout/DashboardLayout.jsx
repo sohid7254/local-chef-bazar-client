@@ -125,7 +125,7 @@ const DashboardLayout = () => {
                                 </li>
                                 <li>
                                     <NavLink
-                                        to={"/dashboard/plateformStatistics"}
+                                        to={"/dashboard/pageStatistics"}
                                         className={({ isActive }) =>
                                             `is-drawer-close:tooltip is-drawer-close:tooltip-right mt-2 flex items-center gap-2 
       ${isActive ? "bg-orange-500 text-white font-semibold rounded-lg" : ""}`

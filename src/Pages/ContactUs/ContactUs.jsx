@@ -57,7 +57,7 @@ const ContactUs = () => {
                             placeholder="Your name"
                             className="w-full border border-gray-800 rounded-lg px-3 py-2 sm:px-4 sm:py-2.5
                                        focus:outline-none transition-all duration-300 text-sm sm:text-base
-                                        focus:border-primary min-h-[44px]"
+                                        focus:border-primary min-h-11"
                         />
                     </div>
 
@@ -68,7 +68,7 @@ const ContactUs = () => {
                             placeholder="Your email"
                             className="w-full border border-gray-800 rounded-lg px-3 py-2 sm:px-4 sm:py-2.5
                                        focus:outline-none transition-all duration-300 text-sm sm:text-base
-                                        focus:border-primary min-h-[44px]"
+                                        focus:border-primary min-h-11"
                         />
                     </div>
 
@@ -86,7 +86,7 @@ const ContactUs = () => {
                     <button
                         type="submit"
                         className="w-full bg-[#00382f] text-white py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base
-                                   transition-all duration-300 hover:bg-[#00473d] min-h-[44px]"
+                                   transition-all duration-300 hover:bg-[#00473d] min-h-11"
                     >
                         Send Message
                     </button>

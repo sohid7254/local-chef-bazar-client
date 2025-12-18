@@ -26,6 +26,7 @@ import MyOrders from "../Pages/DashBoard/User/MyOrders";
 import OrderRequests from "../Pages/DashBoard/Chef/OrderRequests";
 import PaymentCancelled from "../Pages/DashBoard/Payment/PaymentCancelled";
 import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
+import PageStatistics from "../Pages/DashBoard/Admin/PageStatistics";
 
 
 
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
                     </AdminRoute>
                 ),
                 errorElement: <Error500 />,
+            },
+            {
+                path: "pageStatistics",
+                element: <PageStatistics/>
             },
             // chef route
             {

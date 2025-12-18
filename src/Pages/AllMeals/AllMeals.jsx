@@ -33,22 +33,28 @@ const AllMeals = () => {
     return (
         <div className="max-w-7xl mx-auto my-10">
             <h1 className="text-3xl font-bold text-center my-6">All Meals are here!</h1>
-            <div className="flex justify-between mb-10">
-                <div className="flex items-center gap-2 w-200">
+            <div className="flex flex-col md:flex-row justify-between mb-10 gap-6">
+                {/* Search Section */}
+                <div className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
                     <h2 className="text-xl font-bold">Search Here:</h2>
-                    <label className="input  outline-none">
+
+                    <label className="input flex items-center gap-2 w-full md:w-64 bg-white border rounded px-3 py-2">
                         <IoSearchOutline className="text-xl" />
-                        <input type="text" className="input border-none focus:outline-none" value={searchText} placeholder="Search By Meal Name" onChange={(e) => setSearchText(e.target.value)} />
+                        <input type="text" className="w-full border-none focus:outline-none" value={searchText} placeholder="Search By Meal Name" onChange={(e) => setSearchText(e.target.value)} />
                     </label>
                 </div>
-                <div className="flex items-center gap-2">
+
+                {/* Sort Section */}
+                <div className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
                     <h1 className="text-xl font-bold">Sort Here:</h1>
-                    <select className="select select-bordered w-40 border-none outline-none" value={sortPrice} onChange={(e) => setSortPrice(e.target.value)}>
+
+                    <select className="select select-bordered w-full md:w-40 border-none outline-none" value={sortPrice} onChange={(e) => setSortPrice(e.target.value)}>
                         <option value="asc">Price: Low → High</option>
                         <option value="desc">Price: High → Low</option>
                     </select>
                 </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
                 {sortedMeals.map((meal) => (
                     <div key={meal._id} className="card bg-white shadow-md hover:shadow-xl transition">
