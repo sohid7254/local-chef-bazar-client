@@ -14,6 +14,8 @@ import { VscPreview } from "react-icons/vsc";
 import { CiSquareQuestion } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
 import { Helmet } from "react-helmet";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const DashboardLayout = () => {
     const { user, logOut } = useAuth();
     const { role } = useRole();
@@ -23,6 +25,13 @@ const DashboardLayout = () => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
     }, [theme]);
+
+    useEffect(() => {
+        Aos.init({
+            duration: 1000,
+            once: false,
+        });
+    }, []);
 
     const handleThemeToggle = (e) => {
         setTheme(e.target.checked ? "dark" : "light");
