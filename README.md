@@ -3,7 +3,7 @@
 Local Chef Bazaar is a full-stack web application that connects home chefs with local food lovers. It allows chefs to showcase meals, manage orders, and receive reviews, while users can browse, order, and rate meals with secure authentication and payment integration.
 
 ## 🌐 Live URL
-[https://local-chef-bazar.vercel.app](https://local-chef-bazar.vercel.app)
+[Live LInk](https://local-chef-bazar-e4a60.web.app/)
 
 ## 🎯 Purpose
 This platform empowers local chefs to build their brand and earn through home-cooked meals. It ensures secure role-based access, fraud prevention, and a smooth user experience for both chefs and customers.
@@ -45,8 +45,8 @@ This platform empowers local chefs to build their brand and earn through home-co
 ## 🛠️ Setup Instructions
 
 ```bash
-git clone https://github.com/your-username/local-chef-bazar.git
-cd local-chef-bazar
+git clone https://github.com/sohid7254/local-chef-bazar-client.git
+cd local-chef-bazar-client
 npm install
 npm run dev
 

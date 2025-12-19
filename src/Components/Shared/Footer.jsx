@@ -34,11 +34,6 @@ const Footer = () => {
                                 Contact Us
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/chefs" className="hover:underline">
-                                Chefs
-                            </Link>
-                        </li>
                     </ul>
                 </div>
 
