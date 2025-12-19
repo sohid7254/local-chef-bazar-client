@@ -5,6 +5,7 @@ import Loading from '../../../Components/Shared/Loading';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const ManageRequests = () => {
     const axiosSecure = useAxiosSecure();
@@ -68,6 +69,9 @@ const ManageRequests = () => {
 
     return (
         <div className="p-6">
+            <Helmet>
+                <title>Manage Request</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Manage Requests: {requests.length} </h2>
 
             <div className="overflow-x-auto">

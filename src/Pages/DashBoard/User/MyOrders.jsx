@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import AppLoading from "../../../Components/Shared/AppLoading";
+import { Helmet } from "react-helmet";
 
 const MyOrders = () => {
     const { user } = useAuth();
@@ -30,6 +31,9 @@ const MyOrders = () => {
     if (isLoading) return <AppLoading />;
     return (
         <div>
+            <Helmet>
+                <title>My Orders</title>
+            </Helmet>
             <h1 className="text-3xl my-5 ml-5 font-bold">My Orders: {orders.length}</h1>
 
             <div className="overflow-x-auto">

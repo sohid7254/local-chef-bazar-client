@@ -1,16 +1,52 @@
-# React + Vite
+# Local Chef Bazaar 🍽️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Local Chef Bazaar is a full-stack web application that connects home chefs with local food lovers. It allows chefs to showcase meals, manage orders, and receive reviews, while users can browse, order, and rate meals with secure authentication and payment integration.
 
-Currently, two official plugins are available:
+## 🌐 Live URL
+[https://local-chef-bazar.vercel.app](https://local-chef-bazar.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Purpose
+This platform empowers local chefs to build their brand and earn through home-cooked meals. It ensures secure role-based access, fraud prevention, and a smooth user experience for both chefs and customers.
 
-## React Compiler
+## 🚀 Key Features
+- 🔐 Firebase authentication with JWT-based role verification (admin, chef, user)
+- 🧠 React Query for efficient data fetching and caching
+- 📦 Stripe integration for secure payment and order tracking
+- 🧾 Review system with dynamic rating updates
+- 🧑‍🍳 Chef dashboard with fraud detection and role request flow
+- 📊 Admin stats for users, orders, and payments
+- 🎨 Responsive UI with TailwindCSS, AOS animations, and Lenis smooth scrolling
+- 🧭 Protected routes with middleware-style logic and dynamic title updates
+- 📩 Contact form with backend storage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 NPM Packages Used
 
-## Expanding the ESLint configuration
+| Package | Purpose |
+|--------|---------|
+| `@tailwindcss/vite` | Tailwind integration with Vite |
+| `@tanstack/react-query` | Data fetching and caching |
+| `aos` | Scroll animations |
+| `axios` | API requests |
+| `firebase` | Authentication and SDK |
+| `lenis` | Smooth scrolling |
+| `react` / `react-dom` | Core React |
+| `react-helmet` / `react-helmet-async` | Dynamic page titles and SEO |
+| `react-hook-form` | Form handling |
+| `react-icons` | Icon library |
+| `react-lottie` | Lottie animations |
+| `react-router` | Routing |
+| `recharts` | Data visualization |
+| `sweetalert2` | Alert modals |
+| `swiper` | Carousel and sliders |
+| `tailwindcss` | Styling framework |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Setup Instructions
+
+```bash
+git clone https://github.com/your-username/local-chef-bazar.git
+cd local-chef-bazar
+npm install
+npm run dev
+

@@ -13,6 +13,7 @@ import { GiHotMeal, GiMeal } from "react-icons/gi";
 import { VscPreview } from "react-icons/vsc";
 import { CiSquareQuestion } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
+import { Helmet } from "react-helmet";
 const DashboardLayout = () => {
     const { user, logOut } = useAuth();
     const { role } = useRole();
@@ -39,7 +40,10 @@ const DashboardLayout = () => {
             .catch((error) => console.error("Logout Error:", error));
     };
     return (
-        <div className="drawer lg:drawer-open min-h-screen max-w-7xl mx-auto">
+        <div className="drawer lg:drawer-open min-h-screen max-w-7xl mx-auto" data-aos="fade-in">
+            <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content ">
                 {/* Navbar */}
@@ -75,9 +79,8 @@ const DashboardLayout = () => {
                     <ul className="menu">
                         <li>
                             <Link to={"/"}>
-                            <img src={logo} alt="logo" className="w-24 h-10 mx-auto mb-4 is-drawer-close:hidden" />
+                                <img src={logo} alt="logo" className="w-24 h-10 mx-auto mb-4 is-drawer-close:hidden" />
                             </Link>
-                            
                         </li>
                         <li>
                             <Link to={"/"} className="is-drawer-close:tooltip is-drawer-close:tooltip-right mt-20" data-tip="Homepage">

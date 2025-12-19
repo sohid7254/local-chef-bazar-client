@@ -3,6 +3,7 @@ import login from "../../assets/About/Service5.jpg";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const LoginPage = () => {
     const {
@@ -27,19 +28,19 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-2">
-            {/* LEFT SIDE IMAGE */}
-            <div className="hidden md:block">
+        <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-2" data-aos="fade-in">
+            <Helmet>
+                <title>Log In</title>
+            </Helmet>
+            <div className="hidden md:block" data-aos="fade-right">
                 <img src={login} alt="login background" className="w-full h-full object-cover" />
             </div>
 
-            {/* RIGHT SIDE FORM */}
             <div className="flex items-center justify-center p-4 sm:p-6 md:p-8 ">
-                <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-6 sm:p-7 md:p-8">
+                <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-6 sm:p-7 md:p-8" data-aos="zoom-in">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-5 sm:mb-6 text-center">Login</h2>
 
                     <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit(handleLogin)}>
-                        {/* Email */}
                         <div>
                             <label className="text-sm font-bold text-gray-600 dark:text-gray-200">Email:</label>
                             <input
@@ -50,7 +51,7 @@ const LoginPage = () => {
                  focus:ring-2 focus:ring-primary outline-none text-sm sm:text-base
                  text-gray-800 dark:text-gray-100 
                  bg-white dark:bg-gray-800 
-                 placeholder-gray-400 dark:placeholder-gray-500 min-h-[44px]"
+                 placeholder-gray-400 dark:placeholder-gray-500 min-h-11"
                             />
                             {errors.email?.type === "required" && <p className="text-red-500 text-xs sm:text-sm mt-1">Email is a must nedded for LogIn</p>}
                         </div>
@@ -73,22 +74,21 @@ const LoginPage = () => {
                  focus:ring-2 focus:ring-primary outline-none text-sm sm:text-base
                  text-gray-800 dark:text-gray-100 
                  bg-white dark:bg-gray-800 
-                 placeholder-gray-400 dark:placeholder-gray-500 min-h-[44px]"
+                 placeholder-gray-400 dark:placeholder-gray-500 min-h-11"
                             />
                             {errors.password?.type === "required" && <p className="text-red-500 text-xs sm:text-sm mt-1">You must input a valid passord</p>}
                             {errors.password && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.password.message}</p>}
                         </div>
 
-                        {/* Login Button */}
                         <button
                             type="submit"
                             className="btn w-full py-2.5 sm:py-3 bg-primary text-white font-bold cursor-pointer rounded-lg 
-               hover:bg-thi transition text-sm sm:text-base min-h-[44px]"
+               hover:bg-thi transition text-sm sm:text-base min-h-11"
                         >
                             Login
                         </button>
                     </form>
-                    {/* Register Button */}
+
                     <div className="flex items-center my-5 sm:my-6">
                         <hr className="grow border-gray-300" />
                         <span className="px-2 text-gray-500 text-xs sm:text-sm">Or</span>
@@ -99,7 +99,7 @@ const LoginPage = () => {
                         type="button"
                         className="
                     btn w-full py-2.5 sm:py-3 font-semibold cursor-pointer rounded-lg
-                     transition text-sm sm:text-base min-h-[44px]"
+                     transition text-sm sm:text-base min-h-11"
                     >
                         Register
                     </Link>

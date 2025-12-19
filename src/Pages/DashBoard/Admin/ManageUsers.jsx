@@ -1,38 +1,41 @@
-import React from 'react';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import Loading from '../../../Components/Shared/Loading';
-import Swal from 'sweetalert2';
+import React from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Loading from "../../../Components/Shared/Loading";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
-    const axiosSecure = useAxiosSecure()
-    const queryClient = useQueryClient()
+    const axiosSecure = useAxiosSecure();
+    const queryClient = useQueryClient();
 
-    const {data: users= [], isloading} = useQuery({
+    const { data: users = [], isloading } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/users")
-            return res.data
-        }
-    })
+            const res = await axiosSecure.get("/users");
+            return res.data;
+        },
+    });
 
     const handleFraud = async (user) => {
-        await axiosSecure.patch(`/users/fraud/${user.email}`)
-         .then(()=> {
+        await axiosSecure.patch(`/users/fraud/${user.email}`).then(() => {
             Swal.fire({
-                position:"center",
+                position: "center",
                 icon: "success",
                 title: "User marked Fraud",
                 showConfirmButton: false,
                 timer: 1500,
-            })
-         })
-         queryClient.invalidateQueries("users")
-    }
+            });
+        });
+        queryClient.invalidateQueries("users");
+    };
 
-    if(isloading) return <Loading/>
+    if (isloading) return <Loading />;
     return (
         <div className="p-6">
+            <Helmet>
+                <title>Manage Users</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Manage Users: {users.length}</h2>
 
             <div className="overflow-x-auto">
@@ -48,8 +51,8 @@ const ManageUsers = () => {
                     </thead>
 
                     <tbody>
-                        {users.map((user) => (
-                            <tr key={user._id}>
+                        {users.map((user, index) => (
+                            <tr key={user._id} data-aos="fade-up" data-aos-delay={index * 50}>
                                 <td>{user.displayName}</td>
                                 <td>{user.email}</td>
 
@@ -75,7 +78,8 @@ const ManageUsers = () => {
                                         disabled={user.status === "fraud"}
                                         className={`px-3 py-1 rounded text-white
                       ${user.role === "admin" ? "hidden" : ""}
-                      ${user.status === "fraud" ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"}
+                      ${user.status === "fraud" && "bg-gray-400 cursor-not-allowed items-center"}
+                      ${user.status !== "fraud" && "bg-red-600 hover:bg-red-700"}
                     `}
                                     >
                                         Make Fraud

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Registeration = () => {
     const {
@@ -29,7 +30,6 @@ const Registeration = () => {
         }
     };
 
-    
     const handleSignUp = async (data) => {
         try {
             const profileImage = data.image[0];
@@ -76,15 +76,18 @@ const Registeration = () => {
     };
 
     return (
-        <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-2 bg-secondary dark:bg-gray-900">
+        <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-2 bg-secondary dark:bg-gray-900" data-aos="fade-in">
+            <Helmet>
+                <title>Registeration</title>
+            </Helmet>
             {/* LEFT SIDE IMAGE */}
-            <div className="hidden md:block">
+            <div className="hidden md:block" data-aos="fade-right">
                 <img src={login} alt="register background" className="w-full h-full object-cover" />
             </div>
 
             {/* RIGHT FORM */}
             <div className="flex items-center justify-center p-8">
-                <div className="w-full max-w-md bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
+                <div className="w-full max-w-md bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8" data-aos="zoom-in">
                     <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">Register</h2>
 
                     <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>

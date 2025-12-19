@@ -1,51 +1,47 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import useAuth from './useAuth';
-import { useNavigate } from 'react-router';
-
-
+import axios from "axios";
+import React, { useEffect } from "react";
+import useAuth from "./useAuth";
+import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: "https://local-chef-bazar-server.vercel.app/",
 });
 
 const useAxiosSecure = () => {
+    const { user, logOut } = useAuth();
+    const navigate = useNavigate();
 
-    const {user, logOut} = useAuth();
-    const navigate = useNavigate()
-
-    useEffect(() =>{
+    useEffect(() => {
         const reqInreceptor = axiosSecure.interceptors.request.use((config) => {
-            if(user?.accessToken){
+            if (user?.accessToken) {
                 config.headers.Authorization = `Bearer ${user?.accessToken}`;
             }
 
-            return config
-        })
+            return config;
+        });
 
-        const resInterceptor = axiosSecure.interceptors.response.use((response) => {
-            return response
-        },(error) => {
-            console.log(error)
-            const statusCode = error.response?.status;
-            if(statusCode === 401 || statusCode === 403){
-                logOut().then(()=> {
-                    navigate('/login')
-                })
+        const resInterceptor = axiosSecure.interceptors.response.use(
+            (response) => {
+                return response;
+            },
+            (error) => {
+                console.log(error);
+                const statusCode = error.response?.status;
+                if (statusCode === 401 || statusCode === 403) {
+                    logOut().then(() => {
+                        navigate("/login");
+                    });
+                }
+                return Promise.reject(error);
             }
-            return Promise.reject(error)
-        }
-        )
+        );
 
-        return() => {
+        return () => {
             axiosSecure.interceptors.request.eject(reqInreceptor);
-            axiosSecure.interceptors.response.eject(resInterceptor)
-        }
-        
-
-
-    },[user, logOut, navigate])
-    return axiosSecure
+            axiosSecure.interceptors.response.eject(resInterceptor);
+        };
+    }, [user, logOut, navigate]);
+    return axiosSecure;
 };
 
 export default useAxiosSecure;

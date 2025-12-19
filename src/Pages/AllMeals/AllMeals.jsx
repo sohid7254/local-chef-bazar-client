@@ -5,17 +5,18 @@ import AppLoading from "../../Components/Shared/AppLoading";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router";
 import { FaRegStar, FaStarHalfAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const AllMeals = () => {
     const [sortPrice, setSortPrice] = useState("asc");
     const [searchText, setSearchText] = useState("");
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
     const axiosSecure = useAxiosSecure();
 
     const limit = 10;
 
     const { data, isLoading } = useQuery({
-        queryKey: ["all-meals",page],
+        queryKey: ["all-meals", page],
         queryFn: async () => {
             const res = await axiosSecure.get(`/meals?page=${page}&limit=10`);
             return res.data;
@@ -32,8 +33,13 @@ const AllMeals = () => {
     if (isLoading) return <AppLoading />;
     return (
         <div className="max-w-7xl mx-auto my-10">
-            <h1 className="text-3xl font-bold text-center my-6">All Meals are here!</h1>
-            <div className="flex flex-col md:flex-row justify-between mb-10 gap-6">
+            <Helmet>
+                <title>All Meals</title>
+            </Helmet>
+            <h1 className="text-3xl font-bold text-center my-6" data-aos="fade-down">
+                All Meals are here!
+            </h1>
+            <div className="flex flex-col md:flex-row justify-between mb-10 gap-6" data-aos="fade-down" data-aos-delay="100">
                 {/* Search Section */}
                 <div className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
                     <h2 className="text-xl font-bold">Search Here:</h2>
@@ -56,8 +62,13 @@ const AllMeals = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-                {sortedMeals.map((meal) => (
-                    <div key={meal._id} className="card bg-white shadow-md hover:shadow-xl transition">
+                {sortedMeals.map((meal, index) => (
+                    <div
+                        key={meal._id}
+                        className="card bg-white shadow-md hover:shadow-xl transition"
+                        data-aos="fade-up"
+                        data-aos-delay={index * 50} // Staggered delay
+                    >
                         <figure>
                             <img src={meal.foodImage} alt={meal.foodName} className="h-40 sm:h-44 md:h-48 w-full object-cover" />
                         </figure>

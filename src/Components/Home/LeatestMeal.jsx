@@ -15,12 +15,17 @@ const LeatestMeal = () => {
         },
     });
     return (
-        <section className="max-w-7xl mx-auto px-4 my-12 sm:my-14 md:my-16">
+        <section className="max-w-7xl mx-auto px-4 my-12 sm:my-14 md:my-16" data-aos="fade-up">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8">Today's Daily Meals</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-                {meals.map((meal) => (
-                    <div key={meal._id} className="card bg-base-100 shadow-md hover:shadow-xl transition">
+                {meals.map((meal, index) => (
+                    <div
+                        key={meal._id}
+                        className="card bg-base-100 shadow-md hover:shadow-xl transition"
+                        data-aos="fade-up"
+                        data-aos-delay={index * 100} // slight delay for stagger effect
+                    >
                         <figure>
                             <img src={meal.foodImage} alt={meal.foodName} className="h-40 sm:h-44 md:h-48 w-full object-cover" />
                         </figure>

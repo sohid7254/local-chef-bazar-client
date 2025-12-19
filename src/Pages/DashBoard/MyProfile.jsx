@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../Components/Shared/Loading";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
     const { user } = useAuth();
@@ -56,6 +57,9 @@ const MyProfile = () => {
 
     return (
         <div className="max-w-4xl w-full mx-auto mt-10 px-4 sm:px-6 md:px-8">
+            <Helmet>
+                <title>My Profile</title>
+            </Helmet>
             <div className="flex flex-col md:flex-row gap-8 justify-center items-center md:items-start">
                 {/* IMAGE CONTAINER */}
                 <div className="  ">

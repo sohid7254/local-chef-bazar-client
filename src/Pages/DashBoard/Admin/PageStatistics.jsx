@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, Cart
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import AppLoading from "../../../Components/Shared/AppLoading";
+import { Helmet } from "react-helmet";
 
 
 const PageStatistics = () => {
@@ -52,6 +53,9 @@ const PageStatistics = () => {
 
     return (
         <div className="p-6 space-y-10">
+            <Helmet>
+                <title>Platform Statistics</title>
+            </Helmet>
             {/* ---------- TOP CARDS ---------- */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-blue-100 p-6 rounded-lg shadow text-center">

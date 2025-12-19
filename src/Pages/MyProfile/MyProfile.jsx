@@ -59,10 +59,10 @@ const MyProfile = () => {
     if (profileLoading) return <Loading />;
 
     return (
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10" data-aos="fade-up">
             <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8">
                 {/* IMAGE SECTION */}
-                <div className="flex justify-center md:block md:flex-shrink-0">
+                <div className="flex justify-center md:block md:flex-shrink-0" data-aos="zoom-in">
                     <img
                         src={profile?.photoURL}
                         alt="User"

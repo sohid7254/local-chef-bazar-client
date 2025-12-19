@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import AppLoading from '../Shared/AppLoading';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 const OrderMeal = () => {
     const {id} = useParams()
     const {user} = useAuth();
@@ -68,6 +69,9 @@ const OrderMeal = () => {
     if(isLoading) return <AppLoading/>
     return (
         <div className="max-w-xl mx-auto my-10 p-6 bg-white shadow-md rounded">
+            <Helmet>
+                <title>Order Now</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Confirm Your Order</h2>
 
             <form onSubmit={handleSubmit(orderSubmit)} className="space-y-4">

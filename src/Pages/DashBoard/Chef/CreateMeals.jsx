@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
 
 const CreateMeal = () => {
     const axiosSecure = useAxiosSecure();
@@ -121,6 +122,11 @@ const CreateMeal = () => {
 
     return (
         <div className="p-6 max-w-3xl mx-auto bg-base-100 rounded-xl my-5">
+            <Helmet>
+                <title>
+                    Creat Meal
+                </title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Create a New Meal</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

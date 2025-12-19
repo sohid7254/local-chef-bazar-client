@@ -8,7 +8,7 @@ import ReviewModal from "../../Components/Shared/ReviewModal";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import MealReview from "../../Components/Shared/MealReview";
-import AppLoading from "../../Components/Shared/AppLoading";
+import { Helmet } from "react-helmet";
 
 const MealDetails = () => {
     const { user } = useAuth();
@@ -16,14 +16,14 @@ const MealDetails = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const { data: meal = {},refetch: mealRefetch } = useQuery({
+    const { data: meal = {}, refetch: mealRefetch } = useQuery({
         queryKey: ["meal", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/meals/${id}`);
             return res.data;
         },
     });
-    
+
     const { data: reviews = [], refetch: reviewRefetch } = useQuery({
         queryKey: ["reviews", meal._id],
         queryFn: async () => {
@@ -48,16 +48,18 @@ const MealDetails = () => {
             Swal.fire("Oops!", res.data.message, "info");
         }
     };
-    
 
     return (
-        <div className="max-w-7xl mx-auto my-6 sm:my-8 md:my-10 p-4 sm:p-5 md:p-6 bg-base-300 shadow-lg rounded-lg">
+        <div className="max-w-7xl mx-auto my-6 sm:my-8 md:my-10 p-4 sm:p-5 md:p-6 bg-base-300 shadow-lg rounded-lg" data-aos="fade-up">
+            <Helmet>
+                <title>Meal Details</title>
+            </Helmet>
             {/* Main Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 md:gap-8">
-                <div>
+                <div data-aos="zoom-in">
                     <img src={meal.foodImage} alt={meal.foodName} className="w-full h-64 sm:h-80 md:h-96 lg:h-100 object-cover rounded-lg" />
                 </div>
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between" data-aos="fade-left">
                     <div className="space-y-2 sm:space-y-3">
                         <h2 className="text-2xl sm:text-3xl font-bold">{meal.foodName}</h2>
 
@@ -98,7 +100,7 @@ const MealDetails = () => {
                     </div>
 
                     {/* Buttons (Right bottom) */}
-                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="200">
                         <button onClick={() => navigate(`/order/${meal._id}`)} meal={meal._id} className="btn bg-orange-300 w-full min-h-11">
                             Order Now
                         </button>

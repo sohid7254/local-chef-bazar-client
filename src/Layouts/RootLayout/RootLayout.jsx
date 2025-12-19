@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import "aos/dist/aos.css";
 import { Outlet } from "react-router";
 import NavBar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer";
 import useAuth from "../../Hooks/useAuth";
 import AppLoading from "../../Components/Shared/AppLoading";
 import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
+import Aos from "aos";
 
 const RootLayout = () => {
     const { loading } = useAuth();
+
+    useEffect(() => {
+        Aos.init({
+            duration: 1000,
+            once: false,
+        });
+    }, []);
+
     if (loading) {
         return <AppLoading />;
     }

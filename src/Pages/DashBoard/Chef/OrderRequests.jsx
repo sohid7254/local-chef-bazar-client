@@ -3,6 +3,7 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const OrderRequests = () => {
     const {user} = useAuth()
@@ -32,6 +33,9 @@ const OrderRequests = () => {
     
     return (
         <div className="overflow-x-auto">
+            <Helmet>
+                <title>Order Request</title>
+            </Helmet>
             <table className="table table-zebra">
                 <thead>
                     <tr>

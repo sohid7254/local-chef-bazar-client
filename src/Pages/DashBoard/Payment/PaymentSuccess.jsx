@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const PaymentSuccess = () => {
     const [searchParams] = useSearchParams()
@@ -22,6 +23,9 @@ const PaymentSuccess = () => {
     }
     return (
         <div className="text-center p-10">
+            <Helmet>
+                <title>Payment Success</title>
+            </Helmet>
             <h1 className="text-3xl font-bold">Payment Successful</h1>
             <p>We have received your payment</p>
             <button onClick={handleGoBack} className="btn btn-outline btn-primary mt-4">

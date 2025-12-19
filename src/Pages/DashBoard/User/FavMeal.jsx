@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import AppLoading from "../../../Components/Shared/AppLoading";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const FavMeal = () => {
     const { user } = useAuth();
@@ -38,6 +39,9 @@ const FavMeal = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Favourite Meal</title>
+            </Helmet>
             <h1 className="text-xl ml-3 mt-4 font-bold">My Fvourite Meal: {favMeal.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

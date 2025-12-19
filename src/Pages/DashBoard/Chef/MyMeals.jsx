@@ -6,6 +6,7 @@ import Loading from '../../../Components/Shared/Loading';
 
 import Swal from 'sweetalert2';
 import UpdateModal from '../../../Components/Shared/UpdateModal';
+import { Helmet } from 'react-helmet';
 
 const MyMeals = () => {
     const axiosSecure = useAxiosSecure()
@@ -50,6 +51,9 @@ const MyMeals = () => {
     if(isLoading) return <Loading/>
     return (
         <div className="p-6">
+            <Helmet>
+                <title>My Meals</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">My Meals</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

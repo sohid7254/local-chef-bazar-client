@@ -5,6 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { FaStarHalfAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
 
 const MyReview = () => {
     const axiosSecure = useAxiosSecure();
@@ -54,6 +55,9 @@ const MyReview = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>My Review</title>
+            </Helmet>
             <h1 className="text-xl font-bold ml-5 my-5">My Reviews: {myReview.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
