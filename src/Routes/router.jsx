@@ -29,6 +29,8 @@ import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
 import PageStatistics from "../Pages/DashBoard/Admin/PageStatistics";
 import Blogs from "../Pages/Blogs/Blogs";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
+import HelpSupport from "../Pages/HelpSupport/HelpSupport";
+import PrivacyTerms from "../Pages/PrivacyTerms/PrivacyTerms";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +60,16 @@ export const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Registeration />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "help",
+                element: <HelpSupport />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "privacy",
+                element: <PrivacyTerms />,
                 errorElement: <Error500 />,
             },
             {

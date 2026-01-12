@@ -34,6 +34,16 @@ const Footer = () => {
                                 Contact Us
                             </Link>
                         </li>
+                        <li>
+                            <Link to="/help" className="hover:underline">
+                                Help / Support
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/privacy" className="hover:underline">
+                                Privacy / Terms
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 

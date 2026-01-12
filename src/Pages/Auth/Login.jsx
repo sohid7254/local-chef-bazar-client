@@ -4,11 +4,13 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet";
+import SocialLogin from "../../Components/Auth/SocialLogin";
 
 const LoginPage = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm();
     const { signInUser } = useAuth();
@@ -16,15 +18,26 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleLogin = (data) => {
-        console.log(handleLogin, "clicked");
         signInUser(data.email, data.password)
             .then((res) => {
-                console.log(res.user);
                 navigate(location?.state || "/");
             })
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+    const handleDemoLogin = (role) => {
+        if (role === "admin") {
+            setValue("email", "admin@lcb.com");
+            setValue("password", "Admin123@");
+        } else if (role === "chef") {
+            setValue("email", "chef02@lcb.com");
+            setValue("password", "Chef123@");
+        } else {
+            setValue("email", "user3@lcb.com");
+            setValue("password", "User123@");
+        }
     };
 
     return (
@@ -89,11 +102,30 @@ const LoginPage = () => {
                         </button>
                     </form>
 
+                    {/* Social Login */}
+                    <div className="mt-4">
+                        <SocialLogin />
+                    </div>
+
                     <div className="flex items-center my-5 sm:my-6">
                         <hr className="grow border-gray-300" />
                         <span className="px-2 text-gray-500 text-xs sm:text-sm">Or</span>
                         <hr className="grow border-gray-300" />
                     </div>
+
+                    {/* Demo Login Buttons */}
+                    <div className="grid grid-cols-3 gap-2 mb-4">
+                        <button onClick={() => handleDemoLogin("admin")} type="button" className="btn btn-xs sm:btn-sm btn-neutral text-white">
+                            Admin
+                        </button>
+                        <button onClick={() => handleDemoLogin("chef")} type="button" className="btn btn-xs sm:btn-sm btn-accent text-white">
+                            Chef
+                        </button>
+                        <button onClick={() => handleDemoLogin("user")} type="button" className="btn btn-xs sm:btn-sm btn-info text-white">
+                            User
+                        </button>
+                    </div>
+
                     <Link
                         to="/register"
                         type="button"
