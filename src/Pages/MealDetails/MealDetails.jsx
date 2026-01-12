@@ -33,6 +33,22 @@ const MealDetails = () => {
     });
 
     const handleAddFav = async () => {
+        if (!user) {
+            Swal.fire({
+                title: "You are not Logged In",
+                text: "Please login to add to favourites",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Login!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");
+                }
+            });
+            return;
+        }
         const favouriteMeal = {
             userEmail: user.email,
             mealId: meal._id,
@@ -48,6 +64,49 @@ const MealDetails = () => {
             Swal.fire("Oops!", res.data.message, "info");
         }
     };
+
+    const handleOrder = () => {
+        if (user) {
+            navigate(`/order/${meal._id}`);
+        } else {
+            Swal.fire({
+                title: "You are not Logged In",
+                text: "Please login to order this meal",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Login!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");
+                }
+            });
+        }
+    };
+
+const handleReview = () => {
+    if (user && user.email) {
+       
+        document.getElementById("reviewModal").showModal();
+    } else {
+        
+        Swal.fire({
+            title: "You are not Logged In",
+            text: "Please login to add a review",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Login!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate("/login");
+            }
+        });
+    }
+};
+
 
     return (
         <div className="max-w-7xl mx-auto my-6 sm:my-8 md:my-10 p-4 sm:p-5 md:p-6 bg-base-300 shadow-lg rounded-lg" data-aos="fade-up">
@@ -101,13 +160,13 @@ const MealDetails = () => {
 
                     {/* Buttons (Right bottom) */}
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="200">
-                        <button onClick={() => navigate(`/order/${meal._id}`)} meal={meal._id} className="btn bg-orange-300 w-full min-h-11">
+                        <button onClick={handleOrder} meal={meal._id} className="btn bg-orange-300 w-full min-h-11">
                             Order Now
                         </button>
                         <button onClick={handleAddFav} className="btn bg-orange-300 w-full min-h-11">
                             Add to Favourite
                         </button>
-                        <button onClick={() => document.getElementById("reviewModal").showModal()} className="btn bg-orange-300 w-full min-h-11">
+                        <button onClick={handleReview} className="btn bg-orange-300 w-full min-h-11">
                             Add Review
                         </button>
                         <button onClick={() => navigate(-1)} className="btn bg-orange-300 w-full min-h-11">
