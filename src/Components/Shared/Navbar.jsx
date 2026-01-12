@@ -43,6 +43,11 @@ const NavBar = () => {
                     About Us
                 </NavLink>
             </li>
+            <li>
+                <NavLink to="/blogs" className={({ isActive }) => (isActive ? "underline px-2 py-1 text-primary font-semibold" : "px-2 py-1 font-semibold")}>
+                    Blogs
+                </NavLink>
+            </li>
             {user && (
                 <li>
                     <NavLink to="/dashboard/myProfile" className={({ isActive }) => (isActive ? "underline px-2 py-1 text-primary font-semibold" : "px-2 py-1 font-semibold")}>

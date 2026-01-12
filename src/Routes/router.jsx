@@ -27,6 +27,8 @@ import OrderRequests from "../Pages/DashBoard/Chef/OrderRequests";
 import PaymentCancelled from "../Pages/DashBoard/Payment/PaymentCancelled";
 import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
 import PageStatistics from "../Pages/DashBoard/Admin/PageStatistics";
+import Blogs from "../Pages/Blogs/Blogs";
+import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +58,16 @@ export const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Registeration />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "blogs",
+                element: <Blogs />,
+                errorElement: <Error500 />,
+            },
+            {
+                path: "blogs/:id",
+                element: <BlogDetails />,
                 errorElement: <Error500 />,
             },
             {

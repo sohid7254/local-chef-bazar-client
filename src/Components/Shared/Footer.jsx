@@ -51,8 +51,8 @@ const Footer = () => {
                 <div className="text-center sm:text-left">
                     <h3 className="text-base md:text-lg font-semibold mb-3">Contact</h3>
                     <ul className="space-y-2 text-xs sm:text-sm opacity-90">
-                        <li>Email: support@localchefbazaar.com</li>
-                        <li>Phone: +880 1234 567 890</li>
+                        <li>Email: sohidameen321@gmail.com</li>
+                        <li>Phone: +880 1637 687 354</li>
                         <li>Address: Dhaka, Bangladesh</li>
                     </ul>
                 </div>
