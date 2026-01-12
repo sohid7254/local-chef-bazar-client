@@ -14,7 +14,6 @@ const MyProfile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
 
-    
     const {
         data: profile = {},
         isLoading: profileLoading,
@@ -66,7 +65,7 @@ const MyProfile = () => {
             if (res.data.success) {
                 Swal.fire("Updated!", "Your profile has been updated", "success");
                 setIsEditing(false);
-                await refetch(); 
+                await refetch();
             } else {
                 Swal.fire("Oops!", res.data.message, "info");
             }
@@ -86,7 +85,6 @@ const MyProfile = () => {
         try {
             const res = await axiosSecure.post("/requests", requestData);
             if (res.data.insertedId) {
-        
                 Swal.fire({
                     icon: "success",
                     title: "Request Submitted",
@@ -99,7 +97,7 @@ const MyProfile = () => {
             }
         } catch (error) {
             console.log("Error submitting request:", error);
-            Swal.fire("Error", "Failed to submit request", "error"); 
+            Swal.fire("Error", "Failed to submit request", "error");
         }
     };
 
@@ -139,15 +137,13 @@ const MyProfile = () => {
                                     {isEditing ? <input type="text" name="displayName" value={formData.displayName} onChange={handleInputChange} className="input input-bordered w-full max-w-xs font-bold text-xl" placeholder="Display Name" /> : profile?.displayName}
                                 </h1>
                                 <p className="text-gray-500 dark:text-gray-400 font-medium">{profile?.email}</p>
-                                <span className={`badge ${profile?.role === "admin" ? "badge-primary" : "badge-secondary"} mt-2`}>{profile?.role ? profile?.role.toUpperCase() : "USER"}</span>
+                                <span className={`badge ${profile?.role === "admin" ? "" : ""} mt-2`}>{profile?.role ? profile?.role.toUpperCase() : "USER"}</span>
                             </div>
-
-                            <div className="divider"></div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text font-semibold">Address</span>
+                                        <span className="font-semibold text-primary">Address</span>
                                     </label>
                                     {isEditing ? (
                                         <input type="text" name="address" value={formData.address} onChange={handleInputChange} className="input input-bordered w-full" placeholder="Enter your address" />
@@ -167,7 +163,7 @@ const MyProfile = () => {
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text font-semibold">Membership Status</span>
+                                        <span className="text-primary font-semibold">Membership Status</span>
                                     </label>
                                     <p className="text-gray-700 dark:text-gray-300 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-100 dark:border-gray-600">{profile?.status || "Bronze"}</p>
                                 </div>
@@ -199,14 +195,14 @@ const MyProfile = () => {
                     {/* ROLE REQUEST BUTTONS (Only view mode) */}
                     {!isEditing && profile?.role !== "admin" && !isFinal && (
                         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                            <h3 className="text-lg font-semibold mb-4">Account Actions</h3>
+                            <h3 className="text-lg text-primary font-semibold mb-4">Account Actions</h3>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 {profile?.role !== "chef" && (
                                     <button
                                         onClick={() => handleRequest("chef")}
                                         disabled={requestedType === "chef" && requestStatus === "pending"}
                                         className={`btn gap-2
-                                            ${requestedType === "chef" && requestStatus === "pending" ? "btn-disabled" : "btn-outline btn-primary"}`}
+                                            ${requestedType === "chef" && requestStatus === "pending" ? "btn-disabled bg-gray-700 text-gray-300 border-none" : "btn-outline btn-primary"}`}
                                     >
                                         {requestedType === "chef" && requestStatus === "pending" ? "Chef Request Pending" : "Request to be Chef"}
                                     </button>
@@ -216,7 +212,7 @@ const MyProfile = () => {
                                     onClick={() => handleRequest("admin")}
                                     disabled={requestedType === "admin" && requestStatus === "pending"}
                                     className={`btn gap-2
-                                            ${requestedType === "admin" && requestStatus === "pending" ? "btn-disabled" : "btn-outline btn-secondary"}`}
+                                            ${requestedType === "admin" && requestStatus === "pending" ? "btn-disabled bg-gray-700 text-gray-300 border-none" : ""}`}
                                 >
                                     {requestedType === "admin" && requestStatus === "pending" ? "Admin Request Pending" : "Request to be Admin"}
                                 </button>
