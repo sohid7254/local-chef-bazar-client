@@ -108,7 +108,7 @@ const NavBar = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard">Dashboard</NavLink>
+                                    <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
                                 </li>
                                 <li>
                                     <button onClick={handleLogout} className="text-error font-semibold">
