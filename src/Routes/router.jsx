@@ -28,9 +28,6 @@ import PaymentCancelled from "../Pages/DashBoard/Payment/PaymentCancelled";
 import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
 import PageStatistics from "../Pages/DashBoard/Admin/PageStatistics";
 
-
-
-
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -68,11 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/mealDetails/:id",
-                element: (
-                    <PrivateRoute>
-                        <MealDetails />
-                    </PrivateRoute>
-                ),
+                element: <MealDetails />,
                 errorElement: <Error500 />,
             },
             {
@@ -120,7 +113,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "pageStatistics",
-                element: <PageStatistics/>
+                element: <PageStatistics />,
             },
             // chef route
             {
@@ -171,7 +164,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "payment-success",
-                element: <PaymentSuccess/>
+                element: <PaymentSuccess />,
             },
         ],
     },
