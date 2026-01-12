@@ -70,20 +70,48 @@ const NavBar = () => {
 
                 {/* RIGHT (Desktop Only) */}
                 <div className="navbar-end hidden md:flex items-center gap-3">
-                    <label>
-                        <input type="checkbox" className="toggle toggle-sm md:toggle-md" onChange={handleThemeToggle} checked={theme === "dark"} />
+                    <label className="swap swap-rotate">
+                        <input type="checkbox" onChange={handleThemeToggle} checked={theme === "dark"} />
+                        {/* Sun icon */}
+                        <svg className="swap-on fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H5A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,5.64,4.93,1,1,0,0,0,4.93,5.64Zm12.37,9.9a1,1,0,0,0,0,1.41l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,18,16.95ZM12,21a1,1,0,0,0,1-1V19a1,1,0,0,0-2,0v1A1,1,0,0,0,12,21Zm7-9a1,1,0,0,0,1-1H21a1,1,0,0,0,0,2h1A1,1,0,0,0,19,12Zm-2.05-4.95a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.41l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                        </svg>
+                        {/* Moon icon */}
+                        <svg className="swap-off fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z" />
+                        </svg>
                     </label>
 
                     {user ? (
-                        <>
-                            <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
-                                <img src={user?.photoURL} alt="User" className="w-full h-full object-cover" title={user?.displayName} />
-                            </div>
-
-                            <button onClick={handleLogout} className="btn btn-sm md:btn-md btn-outline rounded-xl">
-                                Log Out
-                            </button>
-                        </>
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary">
+                                <div className="w-10 rounded-full">
+                                    <img src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <div className="flex flex-col items-start gap-1 p-2 mb-2 bg-base-200 rounded-lg pointer-events-none">
+                                        <span className="font-bold text-primary">{user?.displayName}</span>
+                                        <span className="text-xs text-gray-500">{user?.email}</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/myProfile" className="justify-between">
+                                        My Profile
+                                        <span className="badge badge-primary">New</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard">Dashboard</NavLink>
+                                </li>
+                                <li>
+                                    <button onClick={handleLogout} className="text-error font-semibold">
+                                        Log Out
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     ) : (
                         <>
                             <Link to="/login" className="btn btn-sm md:btn-md btn-outline rounded-xl">
