@@ -3,7 +3,7 @@ import { GoListOrdered, GoSidebarCollapse } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
-import logo from "../../assets/logo1.png";
+import logo from "../../assets/Logo1.png";
 import { FaUser, FaUsersSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
