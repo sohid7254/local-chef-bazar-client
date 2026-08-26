@@ -15,22 +15,67 @@ const AllMeals = () => {
 
     const limit = 10;
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, isError } = useQuery({
         queryKey: ["all-meals", page],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/meals?page=${page}&limit=10`);
-            return res.data;
+            const res = await axiosSecure.get("/meals", {
+                params: { page, limit },
+            });
+
+            const response = res.data;
+
+            if (Array.isArray(response)) {
+                return {
+                    meals: response,
+                    total: response.length,
+                    isPaginated: false,
+                };
+            }
+
+            if (Array.isArray(response?.meals)) {
+                return {
+                    meals: response.meals,
+                    total: response.total ?? response.count ?? response.meals.length,
+                    isPaginated: true,
+                };
+            }
+
+            if (Array.isArray(response?.data)) {
+                return {
+                    meals: response.data,
+                    total: response.total ?? response.count ?? response.data.length,
+                    isPaginated: true,
+                };
+            }
+
+            return { meals: [], total: 0, isPaginated: false };
         },
     });
-    const meals = data?.meals || [];
-    const total = data?.total || 0;
-    const totalPage = Math.ceil(total / limit);
 
-    const filteredMeals = meals.filter((meal) => meal.foodName.toLowerCase().includes(searchText.toLowerCase()));
+    const meals = data?.meals || [];
+    const total = data?.total || meals.length || 0;
+    const totalPage = Math.max(1, Math.ceil(total / limit));
+    const pageMeals = data?.isPaginated ? meals : meals.slice((page - 1) * limit, page * limit);
+
+    const filteredMeals = pageMeals.filter((meal) =>
+        String(meal?.foodName || "")
+            .toLowerCase()
+            .includes(searchText.toLowerCase()),
+    );
     const sortedMeals = [...filteredMeals].sort((a, b) => {
-        return sortPrice === "asc" ? a.price - b.price : b.price - a.price;
+        return sortPrice === "asc" ? Number(a.price) - Number(b.price) : Number(b.price) - Number(a.price);
     });
+
     if (isLoading) return <AppLoading />;
+
+    if (isError) {
+        return (
+            <div className="max-w-7xl mx-auto my-20 px-4 text-center">
+                <h2 className="text-2xl font-bold text-red-500">Unable to load meals</h2>
+                <p className="mt-2 text-gray-600">Please try again in a moment.</p>
+            </div>
+        );
+    }
     return (
         <div className="max-w-7xl mx-auto my-10">
             <Helmet>
